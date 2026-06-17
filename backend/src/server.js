@@ -74,12 +74,19 @@ app.post("/agent", async (req, res) => {
 
         if (faqResponse.intent === "faq_no_match") {
           logger.info("FAQ flow: no match → fallback to LLM");
-          response = await fallbackFlow(userMessage, confidence);
+
+          // Extract grounding data (empty array if none)
+          const faqMatches = faqResponse.matches || [];
+
+          response = await fallbackFlow(userMessage, confidence, faqMatches);
         } else {
+          // FAQ matched → return FAQ answer directly
+          logger.info("FAQ flow: match → returning FAQ answer");
           response = faqResponse;
         }
         break;
       }
+
 
       case "order_status":
         response = await orderFlow(userMessage);

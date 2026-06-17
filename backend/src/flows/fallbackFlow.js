@@ -3,7 +3,7 @@ import { buildResponse } from "../utils/responseBuilder.js";
 import { callLLM } from "../llm/llmClient.js";
 import { buildFallbackPrompt } from "../llm/fallbackPrompt.js";
 
-export default async function fallbackFlow(userMessage, confidence = 0) {
+export default async function fallbackFlow(userMessage, confidence = 0, faqMatches = []) {
   const text = userMessage.toLowerCase().trim();
 
   // --- 0. Confidence-based fallback ---
@@ -45,7 +45,7 @@ export default async function fallbackFlow(userMessage, confidence = 0) {
 
   try {
     // --- 3. Build controlled prompt ---
-    const prompt = buildFallbackPrompt(userMessage);
+    const prompt = buildFallbackPrompt(userMessage, faqMatches);
 
     // --- 4. Call LLM ---
     const llmText = await callLLM(prompt);

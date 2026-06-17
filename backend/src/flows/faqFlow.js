@@ -58,6 +58,9 @@ export default async function faqFlow(userMessage) {
       entities: { keywords: match.keywords }, 
       source: "rule",
 
+      //Grounding data for fallback
+      matches: [match],
+
       card: {
         type: "faq",
         title: match.question,
@@ -76,6 +79,10 @@ export default async function faqFlow(userMessage) {
     text: "I'm not sure about that. Let me think…",
     intent: "faq_no_match",
     source: "rule",
+
+   // Empty grounding array
+    matches: [],
+
     buttons: [
       { label: "Show FAQs", value: "show faqs" },
       { label: "Talk to support", value: "talk to human" }
