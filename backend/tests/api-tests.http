@@ -1,0 +1,56 @@
+### Health check
+GET http://localhost:3000/health
+
+
+### Test FAQ
+POST http://localhost:3000/agent
+Content-Type: application/json
+
+{
+  "message": "What are your opening hours?"
+}
+
+
+### Test Order Status (valid)
+POST http://localhost:3000/agent
+Content-Type: application/json
+
+{
+  "message": "Where is my order 23456?"
+}
+
+
+### Test Order Status (missing number)
+POST http://localhost:3000/agent
+Content-Type: application/json
+
+{
+  "message": "Where is my order?"
+}
+
+
+### Test Order Status (not found)
+POST http://localhost:3000/agent
+Content-Type: application/json
+
+{
+  "message": "Track order 99999"
+}
+
+
+### Test Escalation
+POST http://localhost:3000/agent
+Content-Type: application/json
+
+{
+  "message": "I want to talk to a human"
+}
+
+
+### Test Fallback (LLM)
+POST http://localhost:3000/agent
+Content-Type: application/json
+
+{
+  "message": "Do you think clouds have feelings?"
+}

@@ -1,0 +1,263 @@
+[2026-06-13T07:42:52.786Z] INFO: FAQ data loaded successfully
+[2026-06-13T07:42:52.790Z] INFO: Virtual agent server running on port 3000
+[2026-06-13T07:45:55.206Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:45:55.206Z] INFO: Request body: {"message":"What are your opening hours?"}
+[2026-06-13T07:45:55.207Z] INFO: User said: What are your opening hours?
+[2026-06-13T07:45:55.207Z] INFO: Detected intent: faq
+[2026-06-13T07:46:33.318Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:46:33.318Z] INFO: Request body: {"message":"Where is my order 23456?"}
+[2026-06-13T07:46:33.318Z] INFO: User said: Where is my order 23456?
+[2026-06-13T07:46:33.318Z] INFO: Detected intent: faq
+[2026-06-13T07:53:20.088Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:53:20.088Z] INFO: Request body: {"message":"Where is my order 23456?"}
+[2026-06-13T07:53:20.088Z] INFO: User said: Where is my order 23456?
+[2026-06-13T07:53:20.088Z] INFO: Detected intent: faq
+[2026-06-13T07:53:33.924Z] INFO: FAQ data loaded successfully
+[2026-06-13T07:53:33.928Z] INFO: Virtual agent server running on port 3000
+[2026-06-13T07:54:05.840Z] INFO: FAQ data loaded successfully
+[2026-06-13T07:54:05.844Z] INFO: Virtual agent server running on port 3000
+[2026-06-13T07:54:32.179Z] INFO: FAQ data loaded successfully
+[2026-06-13T07:54:32.183Z] INFO: Virtual agent server running on port 3000
+[2026-06-13T07:55:17.103Z] INFO: FAQ data loaded successfully
+[2026-06-13T07:55:17.106Z] INFO: Virtual agent server running on port 3000
+[2026-06-13T07:55:22.754Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:55:22.754Z] INFO: Request body: {"message":"What are your opening hours?"}
+[2026-06-13T07:55:22.754Z] INFO: User said: What are your opening hours?
+[2026-06-13T07:55:22.755Z] INFO: Detected intent: faq
+[2026-06-13T07:55:29.014Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:55:29.014Z] INFO: Request body: {"message":"Where is my order 23456?"}
+[2026-06-13T07:55:29.014Z] INFO: User said: Where is my order 23456?
+[2026-06-13T07:55:29.014Z] INFO: Detected intent: faq
+[2026-06-13T07:55:29.014Z] INFO: FAQ no match → routing to fallback LLM
+[2026-06-13T07:55:29.014Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T07:55:29.655Z] ERROR: [object Object]
+[2026-06-13T07:57:16.124Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:57:16.124Z] INFO: Request body: {"message":"Where is my order?"}
+[2026-06-13T07:57:16.124Z] INFO: User said: Where is my order?
+[2026-06-13T07:57:16.124Z] INFO: Detected intent: faq
+[2026-06-13T07:57:16.124Z] INFO: FAQ no match → routing to fallback LLM
+[2026-06-13T07:57:16.124Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T07:57:16.679Z] ERROR: [object Object]
+[2026-06-13T07:57:28.330Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:57:28.330Z] INFO: Request body: {"message":"Track order 99999"}
+[2026-06-13T07:57:28.330Z] INFO: User said: Track order 99999
+[2026-06-13T07:57:28.330Z] INFO: Detected intent: order_status
+[2026-06-13T07:57:28.330Z] INFO: Extracted order number: 99999
+[2026-06-13T07:57:28.332Z] INFO: Incoming request: GET /api/orders/99999
+[2026-06-13T07:57:28.332Z] INFO: Mock API called for order: 99999
+[2026-06-13T07:57:28.332Z] INFO: Order not found: 99999
+[2026-06-13T07:57:41.260Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:57:41.260Z] INFO: Request body: {"message":"I want to talk to a human"}
+[2026-06-13T07:57:41.260Z] INFO: User said: I want to talk to a human
+[2026-06-13T07:57:41.260Z] INFO: Detected intent: escalate
+[2026-06-13T07:57:41.260Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-13T07:57:47.318Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:57:47.318Z] INFO: Request body: {"message":"Do you think clouds have feelings?"}
+[2026-06-13T07:57:47.318Z] INFO: User said: Do you think clouds have feelings?
+[2026-06-13T07:57:47.319Z] INFO: Detected intent: fallback
+[2026-06-13T07:57:47.319Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T07:57:47.510Z] ERROR: [object Object]
+[2026-06-13T07:58:06.649Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:58:06.649Z] INFO: Request body: {"message":"Track order 99999"}
+[2026-06-13T07:58:06.649Z] INFO: User said: Track order 99999
+[2026-06-13T07:58:06.649Z] INFO: Detected intent: order_status
+[2026-06-13T07:58:06.650Z] INFO: Extracted order number: 99999
+[2026-06-13T07:58:06.651Z] INFO: Incoming request: GET /api/orders/99999
+[2026-06-13T07:58:06.652Z] INFO: Mock API called for order: 99999
+[2026-06-13T07:58:06.652Z] INFO: Order not found: 99999
+[2026-06-13T07:58:46.189Z] INFO: Incoming request: POST /agent
+[2026-06-13T07:58:46.189Z] INFO: Request body: {"message":"Where is my order 23456?"}
+[2026-06-13T07:58:46.189Z] INFO: User said: Where is my order 23456?
+[2026-06-13T07:58:46.189Z] INFO: Detected intent: faq
+[2026-06-13T07:58:46.190Z] INFO: FAQ no match → routing to fallback LLM
+[2026-06-13T07:58:46.190Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T07:58:46.913Z] ERROR: [object Object]
+[2026-06-13T08:01:12.558Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:01:12.558Z] INFO: Request body: {"message":"Where is my order 23456?"}
+[2026-06-13T08:01:12.558Z] INFO: User said: Where is my order 23456?
+[2026-06-13T08:01:12.558Z] INFO: Detected intent: faq
+[2026-06-13T08:01:12.558Z] INFO: FAQ no match → routing to fallback LLM
+[2026-06-13T08:01:12.558Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T08:01:13.245Z] ERROR: [object Object]
+[2026-06-13T08:01:24.775Z] INFO: FAQ data loaded successfully
+[2026-06-13T08:01:24.779Z] INFO: Virtual agent server running on port 3000
+[2026-06-13T08:01:28.946Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:01:28.946Z] INFO: Request body: {"message":"Where is my order 23456?"}
+[2026-06-13T08:01:28.946Z] INFO: User said: Where is my order 23456?
+[2026-06-13T08:01:28.946Z] INFO: Detected intent: order_status
+[2026-06-13T08:01:28.946Z] INFO: Extracted order number: 23456
+[2026-06-13T08:01:28.967Z] INFO: Incoming request: GET /api/orders/23456
+[2026-06-13T08:01:28.967Z] INFO: Mock API called for order: 23456
+[2026-06-13T08:01:59.765Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:01:59.765Z] INFO: Request body: {"message":"Where is my order 23456?"}
+[2026-06-13T08:01:59.765Z] INFO: User said: Where is my order 23456?
+[2026-06-13T08:01:59.765Z] INFO: Detected intent: order_status
+[2026-06-13T08:01:59.765Z] INFO: Extracted order number: 23456
+[2026-06-13T08:01:59.767Z] INFO: Incoming request: GET /api/orders/23456
+[2026-06-13T08:01:59.767Z] INFO: Mock API called for order: 23456
+[2026-06-13T08:31:43.563Z] INFO: FAQ data loaded successfully
+[2026-06-13T08:31:43.567Z] INFO: Virtual agent server running on port 3000
+[2026-06-13T08:34:33.872Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:34:33.872Z] INFO: Request body: {"message":"Working hours"}
+[2026-06-13T08:34:33.873Z] INFO: User said: Working hours
+[2026-06-13T08:34:33.873Z] INFO: Detected intent: faq
+[2026-06-13T08:34:47.183Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:34:47.183Z] INFO: Request body: {"message":"where is my order?"}
+[2026-06-13T08:34:47.183Z] INFO: User said: where is my order?
+[2026-06-13T08:34:47.183Z] INFO: Detected intent: order_status
+[2026-06-13T08:34:47.184Z] INFO: No order number found in message
+[2026-06-13T08:34:52.075Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:34:52.075Z] INFO: Request body: {"message":"12345"}
+[2026-06-13T08:34:52.075Z] INFO: User said: 12345
+[2026-06-13T08:34:52.075Z] INFO: Detected intent: fallback
+[2026-06-13T08:34:52.075Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T08:34:52.823Z] ERROR: [object Object]
+[2026-06-13T08:35:03.814Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:35:03.814Z] INFO: Request body: {"message":"order number 12345"}
+[2026-06-13T08:35:03.814Z] INFO: User said: order number 12345
+[2026-06-13T08:35:03.814Z] INFO: Detected intent: order_status
+[2026-06-13T08:35:03.814Z] INFO: Extracted order number: 12345
+[2026-06-13T08:35:03.816Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-13T08:35:03.816Z] INFO: Mock API called for order: 12345
+[2026-06-13T08:35:30.968Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:35:30.968Z] INFO: Request body: {"message":"order number 12345"}
+[2026-06-13T08:35:30.968Z] INFO: User said: order number 12345
+[2026-06-13T08:35:30.968Z] INFO: Detected intent: order_status
+[2026-06-13T08:35:30.968Z] INFO: Extracted order number: 12345
+[2026-06-13T08:35:30.971Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-13T08:35:30.972Z] INFO: Mock API called for order: 12345
+[2026-06-13T08:35:42.984Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:35:42.984Z] INFO: Request body: {"message":"where is my order?"}
+[2026-06-13T08:35:42.984Z] INFO: User said: where is my order?
+[2026-06-13T08:35:42.984Z] INFO: Detected intent: order_status
+[2026-06-13T08:35:42.984Z] INFO: No order number found in message
+[2026-06-13T08:35:45.837Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:35:45.837Z] INFO: Request body: {"message":"12345"}
+[2026-06-13T08:35:45.837Z] INFO: User said: 12345
+[2026-06-13T08:35:45.838Z] INFO: Detected intent: fallback
+[2026-06-13T08:35:45.838Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T08:35:46.160Z] ERROR: [object Object]
+[2026-06-13T08:38:29.518Z] INFO: FAQ data loaded successfully
+[2026-06-13T08:38:29.522Z] INFO: Virtual agent server running on port 3000
+[2026-06-13T08:38:41.101Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:38:41.101Z] INFO: Request body: {"message":"12345"}
+[2026-06-13T08:38:41.102Z] INFO: User said: 12345
+[2026-06-13T08:38:41.102Z] INFO: Detected intent: order_status
+[2026-06-13T08:38:41.102Z] INFO: Extracted order number: 12345
+[2026-06-13T08:38:41.126Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-13T08:38:41.127Z] INFO: Mock API called for order: 12345
+[2026-06-13T08:52:19.399Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:52:19.399Z] INFO: Request body: {"message":"order 12345"}
+[2026-06-13T08:52:19.399Z] INFO: User said: order 12345
+[2026-06-13T08:52:19.399Z] INFO: Detected intent: order_status
+[2026-06-13T08:52:19.399Z] INFO: Extracted order number: 12345
+[2026-06-13T08:52:19.401Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-13T08:52:19.401Z] INFO: Mock API called for order: 12345
+[2026-06-13T08:52:24.079Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:52:24.079Z] INFO: Request body: {"message":"hello"}
+[2026-06-13T08:52:24.079Z] INFO: User said: hello
+[2026-06-13T08:52:24.080Z] INFO: Detected intent: fallback
+[2026-06-13T08:52:24.080Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T08:52:24.791Z] ERROR: [object Object]
+[2026-06-13T08:54:39.081Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:54:39.081Z] INFO: Request body: {"message":"hello"}
+[2026-06-13T08:54:39.081Z] INFO: User said: hello
+[2026-06-13T08:54:39.081Z] INFO: Detected intent: fallback
+[2026-06-13T08:54:39.081Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T08:54:39.755Z] ERROR: [object Object]
+[2026-06-13T08:54:47.835Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:54:47.835Z] INFO: Request body: {"message":"hours?"}
+[2026-06-13T08:54:47.835Z] INFO: User said: hours?
+[2026-06-13T08:54:47.835Z] INFO: Detected intent: faq
+[2026-06-13T08:54:55.684Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:54:55.684Z] INFO: Request body: {"message":"order?"}
+[2026-06-13T08:54:55.684Z] INFO: User said: order?
+[2026-06-13T08:54:55.685Z] INFO: Detected intent: order_status
+[2026-06-13T08:54:55.685Z] INFO: No order number found in message
+[2026-06-13T08:54:58.975Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:54:58.975Z] INFO: Request body: {"message":"12345"}
+[2026-06-13T08:54:58.975Z] INFO: User said: 12345
+[2026-06-13T08:54:58.975Z] INFO: Detected intent: order_status
+[2026-06-13T08:54:58.975Z] INFO: Extracted order number: 12345
+[2026-06-13T08:54:58.979Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-13T08:54:58.979Z] INFO: Mock API called for order: 12345
+[2026-06-13T08:57:34.666Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:57:34.666Z] INFO: Request body: {"message":"hello"}
+[2026-06-13T08:57:34.666Z] INFO: User said: hello
+[2026-06-13T08:57:34.666Z] INFO: Detected intent: fallback
+[2026-06-13T08:57:34.666Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T08:57:34.967Z] ERROR: [object Object]
+[2026-06-13T08:57:40.147Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:57:40.147Z] INFO: Request body: {"message":"order"}
+[2026-06-13T08:57:40.147Z] INFO: User said: order
+[2026-06-13T08:57:40.147Z] INFO: Detected intent: order_status
+[2026-06-13T08:57:40.147Z] INFO: No order number found in message
+[2026-06-13T08:57:45.111Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:57:45.111Z] INFO: Request body: {"message":"12345"}
+[2026-06-13T08:57:45.111Z] INFO: User said: 12345
+[2026-06-13T08:57:45.111Z] INFO: Detected intent: order_status
+[2026-06-13T08:57:45.111Z] INFO: Extracted order number: 12345
+[2026-06-13T08:57:45.113Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-13T08:57:45.113Z] INFO: Mock API called for order: 12345
+[2026-06-13T08:57:56.933Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:57:56.933Z] INFO: Request body: {"message":"hours"}
+[2026-06-13T08:57:56.933Z] INFO: User said: hours
+[2026-06-13T08:57:56.933Z] INFO: Detected intent: faq
+[2026-06-13T08:58:05.438Z] INFO: Incoming request: POST /agent
+[2026-06-13T08:58:05.439Z] INFO: Request body: {"message":"hellp"}
+[2026-06-13T08:58:05.439Z] INFO: User said: hellp
+[2026-06-13T08:58:05.439Z] INFO: Detected intent: fallback
+[2026-06-13T08:58:05.439Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T08:58:05.998Z] ERROR: [object Object]
+[2026-06-13T09:00:30.306Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:00:30.307Z] INFO: Request body: {"message":"hello"}
+[2026-06-13T09:00:30.307Z] INFO: User said: hello
+[2026-06-13T09:00:30.307Z] INFO: Detected intent: fallback
+[2026-06-13T09:00:30.307Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T09:00:30.996Z] ERROR: [object Object]
+[2026-06-13T09:01:13.314Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:01:13.314Z] INFO: Request body: {"message":"hello"}
+[2026-06-13T09:01:13.314Z] INFO: User said: hello
+[2026-06-13T09:01:13.314Z] INFO: Detected intent: fallback
+[2026-06-13T09:01:13.314Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T09:01:13.559Z] ERROR: [object Object]
+[2026-06-13T09:01:18.627Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:01:18.627Z] INFO: Request body: {"message":"order"}
+[2026-06-13T09:01:18.627Z] INFO: User said: order
+[2026-06-13T09:01:18.628Z] INFO: Detected intent: order_status
+[2026-06-13T09:01:18.628Z] INFO: No order number found in message
+[2026-06-13T09:01:23.052Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:01:23.052Z] INFO: Request body: {"message":"number"}
+[2026-06-13T09:01:23.052Z] INFO: User said: number
+[2026-06-13T09:01:23.052Z] INFO: Detected intent: fallback
+[2026-06-13T09:01:23.052Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T09:01:23.276Z] ERROR: [object Object]
+[2026-06-13T09:01:29.378Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:01:29.378Z] INFO: Request body: {"message":"12345"}
+[2026-06-13T09:01:29.378Z] INFO: User said: 12345
+[2026-06-13T09:01:29.378Z] INFO: Detected intent: order_status
+[2026-06-13T09:01:29.378Z] INFO: Extracted order number: 12345
+[2026-06-13T09:01:29.381Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-13T09:01:29.381Z] INFO: Mock API called for order: 12345
+[2026-06-13T09:01:36.823Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:01:36.823Z] INFO: Request body: {"message":"hours"}
+[2026-06-13T09:01:36.823Z] INFO: User said: hours
+[2026-06-13T09:01:36.824Z] INFO: Detected intent: faq
+[2026-06-13T09:01:41.646Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:01:41.646Z] INFO: Request body: {"message":"person"}
+[2026-06-13T09:01:41.646Z] INFO: User said: person
+[2026-06-13T09:01:41.646Z] INFO: Detected intent: fallback
+[2026-06-13T09:01:41.646Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T09:01:41.865Z] ERROR: [object Object]
+[2026-06-13T09:01:48.977Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:01:48.977Z] INFO: Request body: {"message":"talk"}
+[2026-06-13T09:01:48.978Z] INFO: User said: talk
+[2026-06-13T09:01:48.978Z] INFO: Detected intent: fallback
+[2026-06-13T09:01:48.978Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T09:01:49.209Z] ERROR: [object Object]
+[2026-06-13T09:01:55.285Z] INFO: Incoming request: POST /agent
+[2026-06-13T09:01:55.286Z] INFO: Request body: {"message":"talk to person"}
+[2026-06-13T09:01:55.286Z] INFO: User said: talk to person
+[2026-06-13T09:01:55.286Z] INFO: Detected intent: fallback
+[2026-06-13T09:01:55.286Z] INFO: Fallback triggered — sending message to LLM
+[2026-06-13T09:01:55.493Z] ERROR: [object Object]

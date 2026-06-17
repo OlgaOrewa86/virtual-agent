@@ -1,0 +1,32 @@
+[
+  {
+    "question": "What are your opening hours?",
+    "keywords": ["hours", "open", "opening", "time"],
+    "answer": "We are open from 9am to 5pm, Monday to Friday.",
+    "related": ["location", "shipping"]
+  },
+  {
+    "question": "Where are you located?",
+    "keywords": ["location", "address", "where"],
+    "answer": "We are located at 123 Example Street, Auckland.",
+    "related": ["hours", "international"]
+  },
+  {
+    "question": "What is your return policy?",
+    "keywords": ["return", "refund", "returns", "policy"],
+    "answer": "You can return items within 30 days as long as they are in original condition.",
+    "related": ["shipping", "international"]
+  },
+  {
+    "question": "How long does shipping take?",
+    "keywords": ["shipping", "delivery time", "how long shipping", "when arrive"],
+    "answer": "Standard shipping takes 3–5 business days within New Zealand.",
+    "related": ["international", "return"]
+  },
+  {
+    "question": "Do you offer international delivery?",
+    "keywords": ["international", "overseas", "ship abroad", "international delivery"],
+    "answer": "Yes, we ship to Australia and the Pacific Islands. Delivery times vary by region.",
+    "related": ["shipping", "location"]
+  }
+]
