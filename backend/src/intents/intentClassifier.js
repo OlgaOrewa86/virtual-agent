@@ -1,32 +1,51 @@
-// src/intents/intentClassifier.js
 import patterns from "./patterns.js";
 
 export default async function classifyIntent(message) {
   if (!message || typeof message !== "string") {
-    return "fallback";
+    return { intent: "fallback", confidence: 0 };
   }
 
   const text = message.toLowerCase().trim();
+  const scores = {};
 
-  // --- 1. Detect standalone order numbers (5–10 digits) ---
-  if (/^\d{5,10}$/.test(text)) {
-    return "order_status";
-  }
-
-  // --- 2. Detect order numbers inside a sentence ---
-  if (/\b\d{5,10}\b/.test(text)) {
-    return "order_status";
-  }
-
-  // --- 3. Keyword-based intent detection ---
+  // Initialize scores
   for (const intent in patterns) {
-    const keywords = patterns[intent];
+    scores[intent] = 0;
+  }
 
-    if (keywords.some((word) => text.includes(word))) {
-      return intent;
+  // Strong signal: order number
+  const orderRegex = /\b\d{5,10}\b/;
+  if (orderRegex.test(text)) {
+    scores.order_status += 3;
+  }
+
+  // Keyword scoring
+  for (const intent in patterns) {
+    const { keywords } = patterns[intent];
+    for (const word of keywords) {
+      if (text.includes(word)) {
+        scores[intent] += 1;
+      }
     }
   }
 
-  // --- 4. Nothing matched → fallback ---
-  return "fallback";
+  // Regex scoring
+  for (const intent in patterns) {
+    const { regex } = patterns[intent];
+    for (const pattern of regex) {
+      if (pattern.test(text)) {
+        scores[intent] += 2;
+      }
+    }
+  }
+
+  // Pick highest scoring intent
+  const [bestIntent, bestScore] = Object.entries(scores)
+    .sort((a, b) => b[1] - a[1])[0];
+
+  if (bestScore > 0) {
+    return { intent: bestIntent, confidence: bestScore };
+  }
+
+  return { intent: "fallback", confidence: 0 };
 }

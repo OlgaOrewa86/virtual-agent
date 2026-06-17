@@ -12,9 +12,10 @@ import faqFlow from "./flows/faqFlow.js";
 import orderFlow from "./flows/orderFlow.js";
 import escalationFlow from "./flows/escalationFlow.js";
 import fallbackFlow from "./flows/fallbackFlow.js";
+import smalltalkFlow from "./flows/smalltalkFlow.js";
+import { buildResponse } from "./utils/responseBuilder.js";
 
 import orderApi from "./api/orderApi.js";
-
 
 const app = express();
 
@@ -37,25 +38,46 @@ app.post("/agent", async (req, res) => {
 
   logger.info(`User said: ${userMessage}`);
 
-  // 1. Classify intent
-  const intent = await classifyIntent(userMessage);
-  logger.info(`Detected intent: ${intent}`);
+  const { intent, confidence } = await classifyIntent(userMessage);
+  logger.info(`Detected intent: ${intent} (confidence: ${confidence})`);
 
   try {
+    // --- Confidence-based routing ---
+    if (confidence === 0) {
+      logger.info("Routing: confidence 0 → safe fallback");
+      return res.json(await fallbackFlow(userMessage, confidence));
+    }
+
+    if (confidence === 1) {
+      logger.info("Routing: confidence 1 → clarification prompt");
+      return res.json(
+        buildResponse({
+          text: "Just to make sure I’m helping with the right thing — is this about an order, a refund, or something else?",
+          intent: "fallback_clarify",
+          source: "rule"
+        })
+      );
+    }
+
+    if (confidence === 2 || confidence === 3) {
+      logger.info("Routing: confidence 2–3 → LLM fallback");
+      return res.json(await fallbackFlow(userMessage, confidence));
+    }
+
+    // --- High-confidence routing ---
+    logger.info("Routing: high confidence → intent flow");
     let response;
 
     switch (intent) {
       case "faq": {
         const faqResponse = await faqFlow(userMessage);
 
-        // If FAQ flow couldn't answer → fallback to LLM
         if (faqResponse.intent === "faq_no_match") {
-          logger.info("FAQ no match → routing to fallback LLM");
-          response = await fallbackFlow(userMessage);
+          logger.info("FAQ flow: no match → fallback to LLM");
+          response = await fallbackFlow(userMessage, confidence);
         } else {
           response = faqResponse;
         }
-
         break;
       }
 
@@ -67,9 +89,13 @@ app.post("/agent", async (req, res) => {
         response = await escalationFlow();
         break;
 
-      case "fallback":
+      case "smalltalk":
+        response = await smalltalkFlow(userMessage);
+        break;
+
       default:
-        response = await fallbackFlow(userMessage);
+        logger.info("Routing: default → fallback");
+        response = await fallbackFlow(userMessage, confidence);
         break;
     }
 
@@ -77,13 +103,9 @@ app.post("/agent", async (req, res) => {
 
   } catch (err) {
     logger.error("Error in flow:", err);
-
-    return res.status(500).json({
-      error: "Something went wrong"
-    });
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
-
 
 // --- Start server ---
 const PORT = process.env.PORT || 3000;

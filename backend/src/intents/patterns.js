@@ -1,32 +1,81 @@
 // src/intents/patterns.js
 export default {
-  faq: [
-    "hours",
-    "open",
-    "close",
-    "location",
-    "store location",
-    "refund",
-    "return policy",
-    "shipping",
-    "delivery times"
-  ],
+  faq: {
+    keywords: [
+      "hours",
+      "open",
+      "close",
+      "location",
+      "store location",
+      "refund",
+      "return policy",
+      "shipping",
+      "delivery times"
+    ],
+    regex: [
+      /what.*time.*open/,
+      /when.*close/,
+      /where.*(store|location)/,
+      /how.*refund/,
+      /what.*refund.*policy/
+    ]
+  },
 
+  order_status: {
+    keywords: [
+      "track",
+      "order",
+      "status",
+      "where is my",
+      "order number",
+      "package"
+    ],
+    regex: [
+      /where.*order/,
+      /track.*order/,
+      /order.*status/,
+      /package.*(arrive|coming|delivered)/
+    ]
+  },
 
-  order_status: [
-    "track",
-    "order",
-    "status",
-    "where is my",
-    "order number",
-    "package"
-  ],
-
-  escalate: [
-    "human",
-    "agent",
-    "representative",
-    "talk to someone",
-    "escalate"
-  ]
+  escalate: {
+    keywords: [
+      "human",
+      "agent",
+      "representative",
+      "talk to someone",
+      "escalate"
+    ],
+    regex: [
+      /speak.*(agent|human)/,
+      /talk.*(agent|human)/,
+      /need.*help.*human/,
+      /escalate/
+    ]
+  },
+  smalltalk: {
+    keywords: [
+      "hi",
+      "hello",
+      "hey",
+      "thanks",
+      "thank you",
+      "bye",
+      "goodbye",
+      "morning",
+      "afternoon",
+      "evening",
+      "lol",
+      "haha"
+    ],
+    regex: [
+      /^hi\b/,
+      /^hello\b/,
+      /^hey\b/,
+      /thank(s| you)/,
+      /bye/,
+      /good\s*(morning|afternoon|evening)/,
+      /(lol|haha|hehe)/
+    ]
+  }
 };
