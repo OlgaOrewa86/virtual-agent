@@ -13,6 +13,11 @@ import orderFlow from "./flows/orderFlow.js";
 import escalationFlow from "./flows/escalationFlow.js";
 import fallbackFlow from "./flows/fallbackFlow.js";
 import smalltalkFlow from "./flows/smalltalkFlow.js";
+import cancelEscalationFlow from "./flows/cancelEscalationFlow.js";
+import helpFlow from "./flows/helpFlow.js";
+import faqListFlow from "./flows/faqListFlow.js";
+
+
 import { buildResponse } from "./utils/responseBuilder.js";
 
 import orderApi from "./api/orderApi.js";
@@ -59,13 +64,8 @@ app.post("/agent", async (req, res) => {
       );
     }
 
-    if (confidence === 2 || confidence === 3) {
-      logger.info("Routing: confidence 2–3 → LLM fallback");
-      return res.json(await fallbackFlow(userMessage, confidence));
-    }
-
-    // --- High-confidence routing ---
-    logger.info("Routing: high confidence → intent flow");
+    // For confidence 2–5 → route to intent flow
+    logger.info("Routing: intent-based flow");
     let response;
 
     switch (intent) {
@@ -73,38 +73,38 @@ app.post("/agent", async (req, res) => {
         const faqResponse = await faqFlow(userMessage);
 
         if (faqResponse.intent === "faq_no_match") {
-          logger.info("FAQ flow: no match → fallback to LLM");
-
-          // Extract grounding data (empty array if none)
-          const faqMatches = faqResponse.matches || [];
-
-          response = await fallbackFlow(userMessage, confidence, faqMatches);
-        } else {
-          // FAQ matched → return FAQ answer directly
-          logger.info("FAQ flow: match → returning FAQ answer");
-          response = faqResponse;
+          logger.info("FAQ flow: no match → safe fallback");
+          return res.json(await fallbackFlow(userMessage, confidence));
         }
-        break;
+
+        logger.info("FAQ flow: match → returning FAQ answer");
+        return res.json(faqResponse);
       }
 
-
       case "order_status":
-        response = await orderFlow(userMessage);
-        break;
+        return res.json(await orderFlow(userMessage));
 
       case "escalate":
-        response = await escalationFlow();
-        break;
+        return res.json(await escalationFlow());
 
       case "smalltalk":
-        response = await smalltalkFlow(userMessage);
-        break;
+        return res.json(await smalltalkFlow(userMessage));
+
+      case "cancel_escalation":
+        return res.json(await cancelEscalationFlow());
+
+      case "help":
+        return res.json(await helpFlow());
+
+      case "faq_list":
+        return res.json(await faqListFlow());
+
 
       default:
-        logger.info("Routing: default → fallback");
-        response = await fallbackFlow(userMessage, confidence);
-        break;
+        logger.info("Routing: default → safe fallback");
+        return res.json(await fallbackFlow(userMessage, confidence));
     }
+
 
     return res.json(response);
 
@@ -115,7 +115,7 @@ app.post("/agent", async (req, res) => {
 });
 
 // --- Start server ---
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   logger.info(`Virtual agent server running on port ${PORT}`);
 });

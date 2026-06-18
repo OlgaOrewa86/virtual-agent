@@ -20,7 +20,6 @@ export default async function escalationFlow() {
     // optional quick actions
     buttons: [
       { label: "Cancel request", value: "cancel escalation" },
-      { label: "More help", value: "help" }
     ]
   });
 }

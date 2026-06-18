@@ -5,6 +5,7 @@ import MessageBubble from "./components/MessageBubble";
 import Card from "./components/Card";
 import ButtonRow from "./components/ButtonRow";
 import TypingIndicator from "./components/TypingIndicator";
+import List from "./components/List";
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -29,7 +30,7 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3000/agent", {
+      const res = await fetch("http://localhost:3001/agent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: textToSend }),
@@ -96,7 +97,8 @@ function App() {
           {messages.map((msg, i) => (
             <div key={i} className="flex flex-col gap-1">
               {/* Bubble */}
-              <MessageBubble msg={msg} />
+              {!msg.card && <MessageBubble msg={msg} />}
+
 
               {/* Card */}
               {msg.card && <Card card={msg.card} onClick={handleButtonClick} />}
@@ -105,6 +107,10 @@ function App() {
               {msg.buttons && (
                 <ButtonRow buttons={msg.buttons} onClick={handleButtonClick} />
               )}
+              {msg.list && (
+                <List list={msg.list} onClick={handleButtonClick} />
+          )}
+
             </div>
           ))}
 

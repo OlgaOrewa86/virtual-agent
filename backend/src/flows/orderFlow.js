@@ -30,7 +30,7 @@ export default async function orderFlow(userMessage) {
   logger.info(`Extracted order number: ${orderNumber}`);
 
   try {
-    const response = await fetch(`http://localhost:3000/api/orders/${orderNumber}`);
+    const response = await fetch(`http://localhost:3001/api/orders/${orderNumber}`);
     const data = await response.json();
 
     if (data.error) {
@@ -65,7 +65,10 @@ export default async function orderFlow(userMessage) {
         type: "order_status",
         title: `Order #${orderNumber}`,
         status: data.status,
-        link: `https://myshop.com/orders/${orderNumber}`
+       link: `http://localhost:3000/orders/${orderNumber}`
+
+
+
       },
 
       buttons: [

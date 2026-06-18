@@ -77,5 +77,60 @@ export default {
       /good\s*(morning|afternoon|evening)/,
       /(lol|haha|hehe)/
     ]
-  }
+  },
+  cancel_escalation: {
+  keywords: [
+    "cancel escalation",
+    "cancel request",
+    "stop escalation",
+    "never mind",
+    "cancel",
+    "stop"
+  ],
+  regex: [
+    /cancel.*(escalation|request)/,
+    /stop.*(escalation|request)/,
+    /never mind/
+  ]
+},
+help: {
+  keywords: [
+    "help",
+    "info",
+    "information",
+    "more help",
+    "support",
+    "assist",
+    "what can you do"
+  ],
+  regex: [
+    /help/,
+    /info/,
+    /information/,
+    /what.*(can|do).*you/
+  ]
+},
+faq_list: {
+  keywords: [
+    "faq",
+    "faqs",
+    "show faqs",
+    "more faqs",
+    "faq list",
+    "show questions",
+    "more questions",
+    "all faqs"
+  ],
+  regex: [
+    /^faq$/,
+    /^faqs$/,
+    /show.*faq/,
+    /more.*faq/,
+    /faq.*list/
+  ]
+}
+
+
+
+
 };

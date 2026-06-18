@@ -261,3 +261,696 @@
 [2026-06-13T09:01:55.286Z] INFO: Detected intent: fallback
 [2026-06-13T09:01:55.286Z] INFO: Fallback triggered — sending message to LLM
 [2026-06-13T09:01:55.493Z] ERROR: [object Object]
+[2026-06-18T05:17:58.339Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:17:58.344Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:18:36.510Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:18:36.510Z] INFO: Request body: {"message":"hi"}
+[2026-06-18T05:18:36.511Z] INFO: User said: hi
+[2026-06-18T05:18:36.511Z] INFO: Detected intent: smalltalk (confidence: 3)
+[2026-06-18T05:18:36.511Z] INFO: Routing: confidence 2–3 → LLM fallback
+[2026-06-18T05:18:42.853Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:18:42.854Z] INFO: Request body: {"message":"hello"}
+[2026-06-18T05:18:42.854Z] INFO: User said: hello
+[2026-06-18T05:18:42.855Z] INFO: Detected intent: smalltalk (confidence: 3)
+[2026-06-18T05:18:42.855Z] INFO: Routing: confidence 2–3 → LLM fallback
+[2026-06-18T05:18:42.855Z] INFO: Fallback triggered → sending to LLM
+[2026-06-18T05:18:43.555Z] ERROR: [object Object]
+[2026-06-18T05:18:49.924Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:18:49.925Z] INFO: Request body: {"message":"help"}
+[2026-06-18T05:18:49.925Z] INFO: User said: help
+[2026-06-18T05:18:49.925Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:18:49.925Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:18:54.722Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:18:54.723Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:18:54.723Z] INFO: User said: talk to human
+[2026-06-18T05:18:54.723Z] INFO: Detected intent: escalate (confidence: 3)
+[2026-06-18T05:18:54.723Z] INFO: Routing: confidence 2–3 → LLM fallback
+[2026-06-18T05:18:54.723Z] INFO: Fallback triggered → sending to LLM
+[2026-06-18T05:18:54.920Z] ERROR: [object Object]
+[2026-06-18T05:27:40.562Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:27:40.565Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:27:57.143Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:27:57.147Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:28:00.080Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:28:00.084Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:28:24.895Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:28:24.895Z] INFO: Request body: {"message":"hi"}
+[2026-06-18T05:28:24.896Z] INFO: User said: hi
+[2026-06-18T05:28:24.896Z] INFO: Detected intent: smalltalk (confidence: 3)
+[2026-06-18T05:28:24.896Z] INFO: Routing: intent-based flow
+[2026-06-18T05:28:31.104Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:28:31.104Z] INFO: Request body: {"message":"order"}
+[2026-06-18T05:28:31.105Z] INFO: User said: order
+[2026-06-18T05:28:31.105Z] INFO: Detected intent: order_status (confidence: 1)
+[2026-06-18T05:28:31.105Z] INFO: Routing: confidence 1 → clarification prompt
+[2026-06-18T05:28:40.480Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:28:40.480Z] INFO: Request body: {"message":"refund"}
+[2026-06-18T05:28:40.481Z] INFO: User said: refund
+[2026-06-18T05:28:40.481Z] INFO: Detected intent: faq (confidence: 1)
+[2026-06-18T05:28:40.481Z] INFO: Routing: confidence 1 → clarification prompt
+[2026-06-18T05:28:51.775Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:28:51.775Z] INFO: Request body: {"message":"refund policy"}
+[2026-06-18T05:28:51.775Z] INFO: User said: refund policy
+[2026-06-18T05:28:51.776Z] INFO: Detected intent: faq (confidence: 1)
+[2026-06-18T05:28:51.776Z] INFO: Routing: confidence 1 → clarification prompt
+[2026-06-18T05:29:06.128Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:29:06.128Z] INFO: Request body: {"message":"order status"}
+[2026-06-18T05:29:06.128Z] INFO: User said: order status
+[2026-06-18T05:29:06.128Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T05:29:06.128Z] INFO: Routing: intent-based flow
+[2026-06-18T05:29:06.129Z] INFO: No order number found in message
+[2026-06-18T05:29:10.368Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:29:10.368Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T05:29:10.368Z] INFO: User said: 12345
+[2026-06-18T05:29:10.368Z] INFO: Detected intent: order_status (confidence: 3)
+[2026-06-18T05:29:10.368Z] INFO: Routing: intent-based flow
+[2026-06-18T05:29:10.368Z] INFO: Extracted order number: 12345
+[2026-06-18T05:29:10.396Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T05:29:10.397Z] INFO: Mock API called for order: 12345
+[2026-06-18T05:29:21.239Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:29:21.239Z] INFO: Request body: {"message":"Track order 12345"}
+[2026-06-18T05:29:21.239Z] INFO: User said: Track order 12345
+[2026-06-18T05:29:21.239Z] INFO: Detected intent: order_status (confidence: 7)
+[2026-06-18T05:29:21.239Z] INFO: Routing: intent-based flow
+[2026-06-18T05:29:21.239Z] INFO: Extracted order number: 12345
+[2026-06-18T05:29:21.241Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T05:29:21.241Z] INFO: Mock API called for order: 12345
+[2026-06-18T05:29:22.995Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:29:22.996Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:29:22.996Z] INFO: User said: talk to human
+[2026-06-18T05:29:22.996Z] INFO: Detected intent: escalate (confidence: 3)
+[2026-06-18T05:29:22.996Z] INFO: Routing: intent-based flow
+[2026-06-18T05:29:22.996Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T05:29:30.897Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:29:30.897Z] INFO: Request body: {"message":"cancel escalation"}
+[2026-06-18T05:29:30.898Z] INFO: User said: cancel escalation
+[2026-06-18T05:29:30.898Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:29:30.898Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:29:36.830Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:29:36.830Z] INFO: Request body: {"message":"help"}
+[2026-06-18T05:29:36.830Z] INFO: User said: help
+[2026-06-18T05:29:36.830Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:29:36.830Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:32:12.079Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:32:12.083Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:32:22.007Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:32:22.008Z] INFO: Request body: {"message":"hi"}
+[2026-06-18T05:32:22.008Z] INFO: User said: hi
+[2026-06-18T05:32:22.009Z] INFO: Detected intent: smalltalk (confidence: 5)
+[2026-06-18T05:32:22.009Z] INFO: Routing: intent-based flow
+[2026-06-18T05:32:25.612Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:32:25.613Z] INFO: Request body: {"message":"order"}
+[2026-06-18T05:32:25.613Z] INFO: User said: order
+[2026-06-18T05:32:25.614Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T05:32:25.614Z] INFO: Routing: intent-based flow
+[2026-06-18T05:32:25.614Z] INFO: No order number found in message
+[2026-06-18T05:32:30.316Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:32:30.317Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T05:32:30.317Z] INFO: User said: 12345
+[2026-06-18T05:32:30.317Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T05:32:30.317Z] INFO: Routing: intent-based flow
+[2026-06-18T05:32:30.317Z] INFO: Extracted order number: 12345
+[2026-06-18T05:32:30.341Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T05:32:30.341Z] INFO: Mock API called for order: 12345
+[2026-06-18T05:32:32.199Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:32:32.200Z] INFO: Request body: {"message":"Track order 12345"}
+[2026-06-18T05:32:32.200Z] INFO: User said: Track order 12345
+[2026-06-18T05:32:32.200Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T05:32:32.200Z] INFO: Routing: intent-based flow
+[2026-06-18T05:32:32.200Z] INFO: Extracted order number: 12345
+[2026-06-18T05:32:32.202Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T05:32:32.202Z] INFO: Mock API called for order: 12345
+[2026-06-18T05:32:33.750Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:32:33.750Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:32:33.750Z] INFO: User said: talk to human
+[2026-06-18T05:32:33.751Z] INFO: Detected intent: escalate (confidence: 5)
+[2026-06-18T05:32:33.751Z] INFO: Routing: intent-based flow
+[2026-06-18T05:32:33.751Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T05:32:37.574Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:32:37.574Z] INFO: Request body: {"message":"cancel escalation"}
+[2026-06-18T05:32:37.574Z] INFO: User said: cancel escalation
+[2026-06-18T05:32:37.575Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:32:37.575Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:33:36.379Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:33:36.384Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:33:56.397Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:33:56.401Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:34:04.727Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:34:04.731Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:34:33.107Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:34:33.111Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:34:34.182Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:34:34.185Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:34:41.327Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:34:41.331Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:34:45.836Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:34:45.840Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:34:47.835Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:34:47.838Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:34:52.027Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:34:52.031Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:34:56.819Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:34:56.823Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:35:14.567Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:35:14.568Z] INFO: Request body: {"message":"hello"}
+[2026-06-18T05:35:14.568Z] INFO: User said: hello
+[2026-06-18T05:35:14.568Z] INFO: Detected intent: smalltalk (confidence: 5)
+[2026-06-18T05:35:14.569Z] INFO: Routing: intent-based flow
+[2026-06-18T05:35:18.552Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:35:18.552Z] INFO: Request body: {"message":"order"}
+[2026-06-18T05:35:18.553Z] INFO: User said: order
+[2026-06-18T05:35:18.554Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T05:35:18.554Z] INFO: Routing: intent-based flow
+[2026-06-18T05:35:18.554Z] INFO: No order number found in message
+[2026-06-18T05:35:22.232Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:35:22.232Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T05:35:22.233Z] INFO: User said: 12345
+[2026-06-18T05:35:22.233Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T05:35:22.233Z] INFO: Routing: intent-based flow
+[2026-06-18T05:35:22.233Z] INFO: Extracted order number: 12345
+[2026-06-18T05:35:22.263Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T05:35:22.263Z] INFO: Mock API called for order: 12345
+[2026-06-18T05:35:24.750Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:35:24.751Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:35:24.751Z] INFO: User said: talk to human
+[2026-06-18T05:35:24.751Z] INFO: Detected intent: escalate (confidence: 5)
+[2026-06-18T05:35:24.751Z] INFO: Routing: intent-based flow
+[2026-06-18T05:35:24.751Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T05:35:26.494Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:35:26.494Z] INFO: Request body: {"message":"cancel escalation"}
+[2026-06-18T05:35:26.494Z] INFO: User said: cancel escalation
+[2026-06-18T05:35:26.494Z] INFO: Detected intent: cancel_escalation (confidence: 5)
+[2026-06-18T05:35:26.494Z] INFO: Routing: intent-based flow
+[2026-06-18T05:35:26.495Z] ERROR: Error in flow: cancelEscalationFlow is not defined
+[2026-06-18T05:36:08.156Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:36:08.160Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:36:16.534Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:36:16.538Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:36:24.005Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:36:24.005Z] INFO: Request body: {"message":"help"}
+[2026-06-18T05:36:24.006Z] INFO: User said: help
+[2026-06-18T05:36:24.006Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:36:24.006Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:36:31.408Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:36:31.409Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:36:31.409Z] INFO: User said: talk to human
+[2026-06-18T05:36:31.410Z] INFO: Detected intent: escalate (confidence: 5)
+[2026-06-18T05:36:31.410Z] INFO: Routing: intent-based flow
+[2026-06-18T05:36:31.410Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T05:36:33.095Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:36:33.096Z] INFO: Request body: {"message":"cancel escalation"}
+[2026-06-18T05:36:33.096Z] INFO: User said: cancel escalation
+[2026-06-18T05:36:33.096Z] INFO: Detected intent: cancel_escalation (confidence: 5)
+[2026-06-18T05:36:33.096Z] INFO: Routing: intent-based flow
+[2026-06-18T05:36:38.972Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:36:38.973Z] INFO: Request body: {"message":"help"}
+[2026-06-18T05:36:38.973Z] INFO: User said: help
+[2026-06-18T05:36:38.973Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:36:38.973Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:36:50.761Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:36:50.761Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:36:50.761Z] INFO: User said: talk to human
+[2026-06-18T05:36:50.761Z] INFO: Detected intent: escalate (confidence: 5)
+[2026-06-18T05:36:50.761Z] INFO: Routing: intent-based flow
+[2026-06-18T05:36:50.761Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T05:36:52.666Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:36:52.666Z] INFO: Request body: {"message":"help"}
+[2026-06-18T05:36:52.666Z] INFO: User said: help
+[2026-06-18T05:36:52.666Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:36:52.667Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:40:49.617Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:40:49.621Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:40:57.808Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:40:57.808Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:40:57.808Z] INFO: User said: talk to human
+[2026-06-18T05:40:57.809Z] INFO: Detected intent: escalate (confidence: 5)
+[2026-06-18T05:40:57.809Z] INFO: Routing: intent-based flow
+[2026-06-18T05:40:57.809Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T05:41:01.541Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:41:01.541Z] INFO: Request body: {"message":"cancel escalation"}
+[2026-06-18T05:41:01.542Z] INFO: User said: cancel escalation
+[2026-06-18T05:41:01.542Z] INFO: Detected intent: cancel_escalation (confidence: 5)
+[2026-06-18T05:41:01.542Z] INFO: Routing: intent-based flow
+[2026-06-18T05:41:08.435Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:41:08.436Z] INFO: Request body: {"message":"info"}
+[2026-06-18T05:41:08.436Z] INFO: User said: info
+[2026-06-18T05:41:08.436Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:41:08.436Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:43:51.780Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:43:51.784Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:44:03.873Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:44:03.877Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:44:27.316Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:44:27.320Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:44:43.337Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:44:43.340Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:45:02.317Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:45:02.321Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:45:03.154Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:45:03.158Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:45:07.417Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:45:07.420Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:45:09.733Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:45:09.737Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:45:59.326Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:45:59.329Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:46:13.804Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:46:13.804Z] INFO: Request body: {"message":"help"}
+[2026-06-18T05:46:13.804Z] INFO: User said: help
+[2026-06-18T05:46:13.805Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-18T05:46:13.805Z] INFO: Routing: intent-based flow
+[2026-06-18T05:46:22.772Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:46:22.772Z] INFO: Request body: {"message":"track order"}
+[2026-06-18T05:46:22.772Z] INFO: User said: track order
+[2026-06-18T05:46:22.773Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T05:46:22.773Z] INFO: Routing: intent-based flow
+[2026-06-18T05:46:22.774Z] INFO: No order number found in message
+[2026-06-18T05:46:25.310Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:46:25.311Z] INFO: Request body: {"message":"refund policy"}
+[2026-06-18T05:46:25.311Z] INFO: User said: refund policy
+[2026-06-18T05:46:25.311Z] INFO: Detected intent: faq (confidence: 3)
+[2026-06-18T05:46:25.311Z] INFO: Routing: intent-based flow
+[2026-06-18T05:46:25.312Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T05:46:34.319Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:46:34.319Z] INFO: Request body: {"message":"show faqs"}
+[2026-06-18T05:46:34.319Z] INFO: User said: show faqs
+[2026-06-18T05:46:34.319Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:46:34.319Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:46:45.641Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:46:45.642Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:46:45.642Z] INFO: User said: talk to human
+[2026-06-18T05:46:45.642Z] INFO: Detected intent: escalate (confidence: 5)
+[2026-06-18T05:46:45.642Z] INFO: Routing: intent-based flow
+[2026-06-18T05:46:45.642Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T05:46:59.772Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:46:59.773Z] INFO: Request body: {"message":"store location"}
+[2026-06-18T05:46:59.773Z] INFO: User said: store location
+[2026-06-18T05:46:59.773Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T05:46:59.773Z] INFO: Routing: intent-based flow
+[2026-06-18T05:46:59.774Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T05:47:07.961Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:47:07.961Z] INFO: Request body: {"message":"hours"}
+[2026-06-18T05:47:07.961Z] INFO: User said: hours
+[2026-06-18T05:47:07.961Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T05:47:07.961Z] INFO: Routing: intent-based flow
+[2026-06-18T05:47:07.962Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T05:47:11.772Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:47:11.773Z] INFO: Request body: {"message":"shipping"}
+[2026-06-18T05:47:11.773Z] INFO: User said: shipping
+[2026-06-18T05:47:11.773Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T05:47:11.773Z] INFO: Routing: intent-based flow
+[2026-06-18T05:47:11.773Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T05:47:15.350Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:47:15.350Z] INFO: Request body: {"message":"show faqs"}
+[2026-06-18T05:47:15.351Z] INFO: User said: show faqs
+[2026-06-18T05:47:15.351Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:47:15.351Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:49:04.256Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:49:04.260Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:49:19.387Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:49:19.391Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:49:24.780Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:49:24.784Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:49:35.256Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:49:35.260Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:49:36.274Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:49:36.277Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:49:48.552Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:49:48.555Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:49:53.582Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:49:53.585Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:50:03.192Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:50:03.192Z] INFO: Request body: {"message":"faq"}
+[2026-06-18T05:50:03.193Z] INFO: User said: faq
+[2026-06-18T05:50:03.193Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:50:03.194Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:50:24.832Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:50:24.833Z] INFO: Request body: {"message":"faqs"}
+[2026-06-18T05:50:24.833Z] INFO: User said: faqs
+[2026-06-18T05:50:24.834Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-18T05:50:24.834Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-18T05:52:09.451Z] INFO: FAQ data loaded successfully
+[2026-06-18T05:52:09.455Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T05:52:15.580Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:52:15.580Z] INFO: Request body: {"message":"faq"}
+[2026-06-18T05:52:15.581Z] INFO: User said: faq
+[2026-06-18T05:52:15.581Z] INFO: Detected intent: faq_list (confidence: 5)
+[2026-06-18T05:52:15.582Z] INFO: Routing: intent-based flow
+[2026-06-18T05:56:04.723Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:56:04.723Z] INFO: Request body: {"message":"hours"}
+[2026-06-18T05:56:04.723Z] INFO: User said: hours
+[2026-06-18T05:56:04.724Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T05:56:04.724Z] INFO: Routing: intent-based flow
+[2026-06-18T05:56:04.725Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T05:56:15.445Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:56:15.445Z] INFO: Request body: {"message":"show faqs"}
+[2026-06-18T05:56:15.445Z] INFO: User said: show faqs
+[2026-06-18T05:56:15.445Z] INFO: Detected intent: faq_list (confidence: 5)
+[2026-06-18T05:56:15.446Z] INFO: Routing: intent-based flow
+[2026-06-18T05:56:18.173Z] INFO: Incoming request: POST /agent
+[2026-06-18T05:56:18.173Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T05:56:18.173Z] INFO: User said: talk to human
+[2026-06-18T05:56:18.174Z] INFO: Detected intent: escalate (confidence: 5)
+[2026-06-18T05:56:18.174Z] INFO: Routing: intent-based flow
+[2026-06-18T05:56:18.174Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T06:06:00.757Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:06:00.757Z] INFO: Request body: {"message":"hours"}
+[2026-06-18T06:06:00.757Z] INFO: User said: hours
+[2026-06-18T06:06:00.757Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T06:06:00.758Z] INFO: Routing: intent-based flow
+[2026-06-18T06:06:00.758Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:06:06.465Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:06:06.465Z] INFO: Request body: {"message":"location"}
+[2026-06-18T06:06:06.465Z] INFO: User said: location
+[2026-06-18T06:06:06.466Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T06:06:06.466Z] INFO: Routing: intent-based flow
+[2026-06-18T06:06:06.466Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:06:12.892Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:06:12.893Z] INFO: Request body: {"message":"show faqs"}
+[2026-06-18T06:06:12.893Z] INFO: User said: show faqs
+[2026-06-18T06:06:12.893Z] INFO: Detected intent: faq_list (confidence: 5)
+[2026-06-18T06:06:12.893Z] INFO: Routing: intent-based flow
+[2026-06-18T06:06:16.532Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:06:16.533Z] INFO: Request body: {"message":"hours"}
+[2026-06-18T06:06:16.533Z] INFO: User said: hours
+[2026-06-18T06:06:16.533Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T06:06:16.534Z] INFO: Routing: intent-based flow
+[2026-06-18T06:06:16.534Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:06:22.441Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:06:22.441Z] INFO: Request body: {"message":"help"}
+[2026-06-18T06:06:22.441Z] INFO: User said: help
+[2026-06-18T06:06:22.442Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-18T06:06:22.442Z] INFO: Routing: intent-based flow
+[2026-06-18T06:08:16.994Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:08:16.997Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T06:08:23.524Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:08:23.524Z] INFO: Request body: {"message":"help"}
+[2026-06-18T06:08:23.524Z] INFO: User said: help
+[2026-06-18T06:08:23.525Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-18T06:08:23.525Z] INFO: Routing: intent-based flow
+[2026-06-18T06:11:47.455Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:11:47.455Z] INFO: Request body: {"message":"help"}
+[2026-06-18T06:11:47.455Z] INFO: User said: help
+[2026-06-18T06:11:47.455Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-18T06:11:47.455Z] INFO: Routing: intent-based flow
+[2026-06-18T06:11:51.661Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:11:51.661Z] INFO: Request body: {"message":"track order"}
+[2026-06-18T06:11:51.661Z] INFO: User said: track order
+[2026-06-18T06:11:51.661Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:11:51.661Z] INFO: Routing: intent-based flow
+[2026-06-18T06:11:51.661Z] INFO: No order number found in message
+[2026-06-18T06:11:57.161Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:11:57.161Z] INFO: Request body: {"message":"refund policy"}
+[2026-06-18T06:11:57.161Z] INFO: User said: refund policy
+[2026-06-18T06:11:57.161Z] INFO: Detected intent: faq (confidence: 3)
+[2026-06-18T06:11:57.161Z] INFO: Routing: intent-based flow
+[2026-06-18T06:11:57.161Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:12:07.549Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:12:07.549Z] INFO: Request body: {"message":"store location"}
+[2026-06-18T06:12:07.549Z] INFO: User said: store location
+[2026-06-18T06:12:07.550Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T06:12:07.550Z] INFO: Routing: intent-based flow
+[2026-06-18T06:12:07.550Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:12:19.064Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:12:19.065Z] INFO: Request body: {"message":"talk to human"}
+[2026-06-18T06:12:19.065Z] INFO: User said: talk to human
+[2026-06-18T06:12:19.065Z] INFO: Detected intent: escalate (confidence: 5)
+[2026-06-18T06:12:19.065Z] INFO: Routing: intent-based flow
+[2026-06-18T06:12:19.065Z] INFO: Escalation triggered — handing over to human agent
+[2026-06-18T06:12:44.725Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:12:44.729Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T06:12:49.656Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:12:49.657Z] INFO: Request body: {"message":"help"}
+[2026-06-18T06:12:49.657Z] INFO: User said: help
+[2026-06-18T06:12:49.658Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-18T06:12:49.658Z] INFO: Routing: intent-based flow
+[2026-06-18T06:12:53.142Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:12:53.143Z] INFO: Request body: {"message":"store location"}
+[2026-06-18T06:12:53.143Z] INFO: User said: store location
+[2026-06-18T06:12:53.144Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T06:12:53.144Z] INFO: Routing: intent-based flow
+[2026-06-18T06:12:53.145Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:14:19.726Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:14:19.730Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T06:14:26.992Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:14:26.993Z] INFO: Request body: {"message":"help"}
+[2026-06-18T06:14:26.993Z] INFO: User said: help
+[2026-06-18T06:14:26.994Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-18T06:14:26.994Z] INFO: Routing: intent-based flow
+[2026-06-18T06:14:28.767Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:14:28.767Z] INFO: Request body: {"message":"store location"}
+[2026-06-18T06:14:28.768Z] INFO: User said: store location
+[2026-06-18T06:14:28.769Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T06:14:28.769Z] INFO: Routing: intent-based flow
+[2026-06-18T06:14:28.770Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:14:30.670Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:14:30.670Z] INFO: Request body: {"message":"show faqs"}
+[2026-06-18T06:14:30.670Z] INFO: User said: show faqs
+[2026-06-18T06:14:30.670Z] INFO: Detected intent: faq_list (confidence: 5)
+[2026-06-18T06:14:30.670Z] INFO: Routing: intent-based flow
+[2026-06-18T06:14:35.755Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:14:35.755Z] INFO: Request body: {"message":"hours"}
+[2026-06-18T06:14:35.755Z] INFO: User said: hours
+[2026-06-18T06:14:35.755Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T06:14:35.755Z] INFO: Routing: intent-based flow
+[2026-06-18T06:14:35.755Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:14:41.201Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:14:41.201Z] INFO: Request body: {"message":"shipping"}
+[2026-06-18T06:14:41.201Z] INFO: User said: shipping
+[2026-06-18T06:14:41.202Z] INFO: Detected intent: faq (confidence: 4)
+[2026-06-18T06:14:41.202Z] INFO: Routing: intent-based flow
+[2026-06-18T06:14:41.202Z] INFO: FAQ flow: match → returning FAQ answer
+[2026-06-18T06:14:47.706Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:14:47.706Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:14:47.706Z] INFO: User said: order
+[2026-06-18T06:14:47.707Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:14:47.707Z] INFO: Routing: intent-based flow
+[2026-06-18T06:14:47.707Z] INFO: No order number found in message
+[2026-06-18T06:14:51.692Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:14:51.693Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:14:51.693Z] INFO: User said: 12345
+[2026-06-18T06:14:51.693Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:14:51.693Z] INFO: Routing: intent-based flow
+[2026-06-18T06:14:51.693Z] INFO: Extracted order number: 12345
+[2026-06-18T06:14:51.726Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:14:51.726Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:22:18.528Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:22:18.532Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T06:22:22.117Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:22:22.121Z] INFO: Virtual agent server running on port 3000
+[2026-06-18T06:22:36.810Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:22:36.810Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:22:36.811Z] INFO: User said: order
+[2026-06-18T06:22:36.811Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:22:36.811Z] INFO: Routing: intent-based flow
+[2026-06-18T06:22:36.811Z] INFO: No order number found in message
+[2026-06-18T06:22:39.459Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:22:39.459Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:22:39.460Z] INFO: User said: 12345
+[2026-06-18T06:22:39.460Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:22:39.460Z] INFO: Routing: intent-based flow
+[2026-06-18T06:22:39.460Z] INFO: Extracted order number: 12345
+[2026-06-18T06:22:39.479Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:22:39.479Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:22:41.346Z] INFO: Incoming request: GET /orders/12345
+[2026-06-18T06:24:04.334Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:24:04.337Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:24:09.405Z] INFO: Incoming request: GET /
+[2026-06-18T06:24:40.319Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:24:40.322Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:24:43.448Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:24:43.451Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:25:03.958Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:25:03.963Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:25:27.029Z] INFO: Incoming request: GET /
+[2026-06-18T06:25:42.859Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:25:42.863Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:25:53.663Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:25:53.663Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:25:53.664Z] INFO: User said: order
+[2026-06-18T06:25:53.664Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:25:53.664Z] INFO: Routing: intent-based flow
+[2026-06-18T06:25:53.664Z] INFO: No order number found in message
+[2026-06-18T06:26:01.249Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:26:01.250Z] INFO: Request body: {"message":"12345\\"}
+[2026-06-18T06:26:01.250Z] INFO: User said: 12345\
+[2026-06-18T06:26:01.251Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:26:01.251Z] INFO: Routing: intent-based flow
+[2026-06-18T06:26:01.251Z] INFO: Extracted order number: 12345
+[2026-06-18T06:26:01.283Z] ERROR: Order API error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-06-18T06:26:06.889Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:26:06.889Z] INFO: Request body: {"message":"Check order 12345"}
+[2026-06-18T06:26:06.889Z] INFO: User said: Check order 12345
+[2026-06-18T06:26:06.889Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:26:06.889Z] INFO: Routing: intent-based flow
+[2026-06-18T06:26:06.889Z] INFO: Extracted order number: 12345
+[2026-06-18T06:26:06.897Z] ERROR: Order API error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-06-18T06:26:10.530Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:26:10.530Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:26:10.531Z] INFO: User said: 12345
+[2026-06-18T06:26:10.531Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:26:10.531Z] INFO: Routing: intent-based flow
+[2026-06-18T06:26:10.531Z] INFO: Extracted order number: 12345
+[2026-06-18T06:26:10.537Z] ERROR: Order API error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-06-18T06:26:27.800Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:26:27.800Z] INFO: Request body: {"message":"order 12345"}
+[2026-06-18T06:26:27.800Z] INFO: User said: order 12345
+[2026-06-18T06:26:27.800Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:26:27.800Z] INFO: Routing: intent-based flow
+[2026-06-18T06:26:27.800Z] INFO: Extracted order number: 12345
+[2026-06-18T06:26:27.810Z] ERROR: Order API error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-06-18T06:27:02.963Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:27:02.963Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:27:02.964Z] INFO: User said: order
+[2026-06-18T06:27:02.964Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:27:02.964Z] INFO: Routing: intent-based flow
+[2026-06-18T06:27:02.964Z] INFO: No order number found in message
+[2026-06-18T06:27:06.949Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:27:06.949Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:27:06.949Z] INFO: User said: 12345
+[2026-06-18T06:27:06.950Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:27:06.950Z] INFO: Routing: intent-based flow
+[2026-06-18T06:27:06.950Z] INFO: Extracted order number: 12345
+[2026-06-18T06:27:06.962Z] ERROR: Order API error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-06-18T06:28:25.597Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:28:25.598Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:28:25.598Z] INFO: User said: order
+[2026-06-18T06:28:25.598Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:28:25.598Z] INFO: Routing: intent-based flow
+[2026-06-18T06:28:25.598Z] INFO: No order number found in message
+[2026-06-18T06:28:28.772Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:28:28.772Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:28:28.772Z] INFO: User said: 12345
+[2026-06-18T06:28:28.772Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:28:28.772Z] INFO: Routing: intent-based flow
+[2026-06-18T06:28:28.772Z] INFO: Extracted order number: 12345
+[2026-06-18T06:28:28.776Z] ERROR: Order API error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-06-18T06:28:50.557Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:28:50.561Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:28:59.114Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:28:59.114Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:28:59.115Z] INFO: User said: order
+[2026-06-18T06:28:59.115Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:28:59.116Z] INFO: Routing: intent-based flow
+[2026-06-18T06:28:59.116Z] INFO: No order number found in message
+[2026-06-18T06:29:01.836Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:29:01.837Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:29:01.837Z] INFO: User said: 12345
+[2026-06-18T06:29:01.837Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:29:01.837Z] INFO: Routing: intent-based flow
+[2026-06-18T06:29:01.837Z] INFO: Extracted order number: 12345
+[2026-06-18T06:29:01.872Z] ERROR: Order API error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-06-18T06:29:53.712Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:29:53.716Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:30:12.480Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:30:12.480Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:30:12.481Z] INFO: User said: order
+[2026-06-18T06:30:12.481Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:30:12.481Z] INFO: Routing: intent-based flow
+[2026-06-18T06:30:12.481Z] INFO: No order number found in message
+[2026-06-18T06:30:15.705Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:30:15.706Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:30:15.706Z] INFO: User said: 12345
+[2026-06-18T06:30:15.707Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:30:15.707Z] INFO: Routing: intent-based flow
+[2026-06-18T06:30:15.707Z] INFO: Extracted order number: 12345
+[2026-06-18T06:30:15.746Z] ERROR: Order API error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-06-18T06:33:00.072Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:33:00.076Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:33:17.888Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:33:17.889Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:33:17.969Z] INFO: Incoming request: GET /favicon.ico
+[2026-06-18T06:33:25.473Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:33:25.473Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:33:25.473Z] INFO: User said: order
+[2026-06-18T06:33:25.474Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:33:25.474Z] INFO: Routing: intent-based flow
+[2026-06-18T06:33:25.474Z] INFO: No order number found in message
+[2026-06-18T06:33:28.079Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:33:28.079Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:33:28.079Z] INFO: User said: 12345
+[2026-06-18T06:33:28.081Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:33:28.081Z] INFO: Routing: intent-based flow
+[2026-06-18T06:33:28.081Z] INFO: Extracted order number: 12345
+[2026-06-18T06:33:28.112Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:33:28.112Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:33:29.789Z] INFO: Incoming request: GET /orders/12345
+[2026-06-18T06:35:04.609Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:35:04.613Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:35:05.631Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:35:05.634Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:35:09.081Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:35:09.085Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:35:14.458Z] INFO: Incoming request: GET /orders/12345
+[2026-06-18T06:35:22.642Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:35:22.642Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:35:22.643Z] INFO: User said: order
+[2026-06-18T06:35:22.644Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:35:22.644Z] INFO: Routing: intent-based flow
+[2026-06-18T06:35:22.644Z] INFO: No order number found in message
+[2026-06-18T06:35:25.752Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:35:25.752Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:35:25.753Z] INFO: User said: 12345
+[2026-06-18T06:35:25.753Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:35:25.753Z] INFO: Routing: intent-based flow
+[2026-06-18T06:35:25.753Z] INFO: Extracted order number: 12345
+[2026-06-18T06:35:25.780Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:35:25.780Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:35:27.165Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:35:27.165Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:37:07.278Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:37:07.282Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:37:44.537Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:37:44.537Z] INFO: Request body: {"message":"oorder"}
+[2026-06-18T06:37:44.537Z] INFO: User said: oorder
+[2026-06-18T06:37:44.538Z] INFO: Detected intent: order_status (confidence: 3)
+[2026-06-18T06:37:44.538Z] INFO: Routing: intent-based flow
+[2026-06-18T06:37:44.538Z] INFO: No order number found in message
+[2026-06-18T06:37:47.213Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:37:47.214Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:37:47.214Z] INFO: User said: 12345
+[2026-06-18T06:37:47.216Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:37:47.216Z] INFO: Routing: intent-based flow
+[2026-06-18T06:37:47.216Z] INFO: Extracted order number: 12345
+[2026-06-18T06:37:47.247Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:37:47.247Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:40:11.580Z] INFO: FAQ data loaded successfully
+[2026-06-18T06:40:11.584Z] INFO: Virtual agent server running on port 3001
+[2026-06-18T06:40:19.061Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:40:19.062Z] INFO: Request body: {"message":"order"}
+[2026-06-18T06:40:19.062Z] INFO: User said: order
+[2026-06-18T06:40:19.063Z] INFO: Detected intent: order_status (confidence: 4)
+[2026-06-18T06:40:19.063Z] INFO: Routing: intent-based flow
+[2026-06-18T06:40:19.063Z] INFO: No order number found in message
+[2026-06-18T06:40:22.859Z] INFO: Incoming request: POST /agent
+[2026-06-18T06:40:22.859Z] INFO: Request body: {"message":"12345"}
+[2026-06-18T06:40:22.860Z] INFO: User said: 12345
+[2026-06-18T06:40:22.862Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-18T06:40:22.862Z] INFO: Routing: intent-based flow
+[2026-06-18T06:40:22.862Z] INFO: Extracted order number: 12345
+[2026-06-18T06:40:22.895Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:40:22.895Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:40:24.328Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:40:24.328Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:40:24.329Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:40:24.330Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:41:31.991Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:41:31.992Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:41:31.992Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:41:31.993Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:42:25.710Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:42:25.710Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:42:25.711Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:42:25.711Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:42:33.102Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:42:33.102Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:42:33.103Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:42:33.103Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:44:44.617Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:44:44.617Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:44:44.618Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:44:44.618Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:45:51.956Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:45:51.956Z] INFO: Mock API called for order: 12345
+[2026-06-18T06:45:51.956Z] INFO: Incoming request: GET /api/orders/12345
+[2026-06-18T06:45:51.956Z] INFO: Mock API called for order: 12345
