@@ -14,33 +14,32 @@ export default async function classifyIntent(message) {
     scores[intent] = 0;
   }
 
-  // --- Strong signal: order number ---
+  // --- 1. Strong signal: order number ---
   const orderNumberRegex = /\b\d{5,10}\b/;
   if (orderNumberRegex.test(text)) {
-    scores.order_status = Math.max(scores.order_status, 5);
+    scores.order_status = 5;
   }
 
-  // --- Keyword scoring ---
+  // --- 2. Keyword scoring (whole‑word only) ---
   for (const intent in patterns) {
     const { keywords } = patterns[intent];
 
     for (const word of keywords) {
-      const exactMatch = text === word;
-      const partialMatch = text.includes(word);
+      const wholeWord = new RegExp(`\\b${escapeRegex(word)}\\b`, "i");
 
-      // Exact match → very strong signal
-      if (exactMatch) {
+      // Exact match → very strong
+      if (text === word) {
         scores[intent] = Math.max(scores[intent], 4);
       }
 
-      // Partial match → medium signal
-      if (partialMatch) {
+      // Whole‑word match → medium
+      if (wholeWord.test(text)) {
         scores[intent] = Math.max(scores[intent], 3);
       }
     }
   }
 
-  // --- Regex scoring (strongest signal) ---
+  // --- 3. Regex scoring (strongest) ---
   for (const intent in patterns) {
     const { regex } = patterns[intent];
 
@@ -51,15 +50,27 @@ export default async function classifyIntent(message) {
     }
   }
 
-  // --- Pick highest scoring intent ---
-  const [bestIntent, bestScore] = Object.entries(scores)
-    .sort((a, b) => b[1] - a[1])[0];
+  // --- 4. Pick highest scoring intent ---
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const [bestIntent, bestScore] = sorted[0];
 
-  // If we have a meaningful score → return it
-  if (bestScore > 0) {
-    return { intent: bestIntent, confidence: bestScore };
+  // --- 5. Confidence mapping ---
+  // 0 → nonsense / unknown
+  // 1 → vague
+  // 2–3 → fallback LLM
+  // 4–5 → strong intent
+  if (bestScore === 0) {
+    return { intent: "fallback", confidence: 0 };
   }
 
-  // Otherwise → fallback
-  return { intent: "fallback", confidence: 0 };
+  if (bestScore === 1) {
+    return { intent: "fallback", confidence: 1 };
+  }
+
+  return { intent: bestIntent, confidence: bestScore };
+}
+
+// Utility: escape regex special chars
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }

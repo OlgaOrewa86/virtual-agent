@@ -38,21 +38,35 @@ export default {
     ]
   },
 
-  escalate: {
-    keywords: [
-      "human",
-      "agent",
-      "representative",
-      "talk to someone",
-      "escalate"
-    ],
-    regex: [
-      /speak.*(agent|human)/,
-      /talk.*(agent|human)/,
-      /need.*help.*human/,
-      /escalate/
-    ]
-  },
+escalate: {
+  keywords: [
+    "human",
+    "agent",
+    "representative",
+    "talk to someone",
+    "escalate",
+    "contact",
+    "contact us",
+    "contact support",
+    "customer service",
+    "phone",
+    "phone number",
+    "email",
+    "reach you"
+  ],
+  regex: [
+    /speak.*(agent|human)/,
+    /talk.*(agent|human)/,
+    /need.*help.*human/,
+    /escalate/,
+    /contact/,
+    /customer.*service/,
+    /how.*(contact|reach)/,
+    /phone.*(number)?/,
+    /email/
+  ]
+},
+
   smalltalk: {
     keywords: [
       "hi",

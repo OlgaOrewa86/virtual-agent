@@ -74,12 +74,15 @@ app.post("/agent", async (req, res) => {
 
         if (faqResponse.intent === "faq_no_match") {
           logger.info("FAQ flow: no match → safe fallback");
-          return res.json(await fallbackFlow(userMessage, confidence));
+          return res.json(
+            await fallbackFlow(userMessage, confidence, faqResponse.matches)
+          );
         }
 
         logger.info("FAQ flow: match → returning FAQ answer");
         return res.json(faqResponse);
       }
+
 
       case "order_status":
         return res.json(await orderFlow(userMessage));
@@ -102,7 +105,8 @@ app.post("/agent", async (req, res) => {
 
       default:
         logger.info("Routing: default → safe fallback");
-        return res.json(await fallbackFlow(userMessage, confidence));
+        return res.json(await fallbackFlow(userMessage, confidence, []));
+
     }
 
 

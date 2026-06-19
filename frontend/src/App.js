@@ -9,6 +9,32 @@ import List from "./components/List";
 
 function App() {
   const [messages, setMessages] = useState([]);
+  // Show typing animation, then welcome message
+  useEffect(() => {
+    // 1. Show typing indicator
+    setLoading(true);
+
+    const timer = setTimeout(() => {
+      // 2. Add welcome message
+      setMessages([
+        {
+          sender: "agent",
+          text: "Hi there! I’m here to help with orders, returns, FAQs, or anything else you need.",
+          time: new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        },
+      ]);
+
+      // 3. Hide typing indicator
+      setLoading(false);
+    }, 1200); // typing delay (1.2s feels natural)
+
+    return () => clearTimeout(timer);
+  }, []);
+
+
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 

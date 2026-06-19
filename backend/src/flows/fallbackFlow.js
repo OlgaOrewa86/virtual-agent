@@ -6,23 +6,6 @@ import { buildFallbackPrompt } from "../llm/fallbackPrompt.js";
 export default async function fallbackFlow(userMessage, confidence = 0, faqMatches = []) {
   const text = userMessage.toLowerCase().trim();
 
-  // --- 0. Confidence-based fallback ---
-  if (confidence === 0) {
-    return buildResponse({
-      text: "I’m not quite sure what you mean — could you rephrase it?",
-      intent: "fallback_low_confidence",
-      source: "rule"
-    });
-  }
-
-  if (confidence === 1) {
-    return buildResponse({
-      text: "Just to make sure I’m helping with the right thing — is this about an order, a refund, or something else?",
-      intent: "fallback_clarify",
-      source: "rule"
-    });
-  }
-
   // --- 1. Handle very short or unclear messages ---
   if (text.length < 3) {
     return buildResponse({
@@ -41,13 +24,18 @@ export default async function fallbackFlow(userMessage, confidence = 0, faqMatch
     });
   }
 
-  logger.info("Fallback triggered → sending to LLM");
+  // --- 3. Confidence-based fallback ---
+  if (confidence === 1) {
+    return buildResponse({
+      text: "Just to make sure I’m helping with the right thing — is this about an order, a refund, or something else?",
+      intent: "fallback_clarify",
+      source: "rule"
+    });
+  }
 
+  // --- 4. Confidence 0 or 2–5 → LLM fallback ---
   try {
-    // --- 3. Build controlled prompt ---
     const prompt = buildFallbackPrompt(userMessage, faqMatches);
-
-    // --- 4. Call LLM ---
     const llmText = await callLLM(prompt);
 
     return buildResponse({
@@ -68,7 +56,6 @@ export default async function fallbackFlow(userMessage, confidence = 0, faqMatch
   } catch (err) {
     logger.error("LLM fallback error:", err);
 
-    // --- 5. Safe downgrade ---
     return buildResponse({
       text: "Sorry, I’m having trouble understanding right now.",
       intent: "fallback_error",

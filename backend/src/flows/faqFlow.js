@@ -41,13 +41,22 @@ export default async function faqFlow(userMessage) {
   const text = userMessage.toLowerCase();
   const words = text.split(/\s+/); // split into words
 
-  // exact OR fuzzy per word
   const match = faqData.find((item) =>
     item.keywords &&
-    item.keywords.some((k) =>
-      words.some((w) => w.includes(k.toLowerCase()) || fuzzyMatch(w, k.toLowerCase()))
-    )
+    item.keywords.some((k) => {
+      const keyword = k.toLowerCase();
+
+      // 1. Whole‑word match (strong)
+      if (words.includes(keyword)) return true;
+
+      // 2. Fuzzy match only for meaningful words
+      return words.some(
+        (w) =>
+          w.length > 4 && keyword.length > 4 && levenshtein.get(w, keyword) <= 1
+      );
+    })
   );
+
 
   if (match) {
     const relatedFAQs = getRelatedFAQs(match, faqData);
