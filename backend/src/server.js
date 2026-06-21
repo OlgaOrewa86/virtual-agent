@@ -16,7 +16,8 @@ import smalltalkFlow from "./flows/smalltalkFlow.js";
 import cancelEscalationFlow from "./flows/cancelEscalationFlow.js";
 import helpFlow from "./flows/helpFlow.js";
 import faqListFlow from "./flows/faqListFlow.js";
-
+import productFlow from "./flows/productFlow.js";
+import listProductsFlow from "./flows/listProductsFlow.js";
 
 import { buildResponse } from "./utils/responseBuilder.js";
 
@@ -28,6 +29,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(requestLogger);
+
+
 
 // --- Health check endpoint ---
 app.get("/health", (req, res) => {
@@ -101,6 +104,12 @@ app.post("/agent", async (req, res) => {
 
       case "faq_list":
         return res.json(await faqListFlow());
+
+      case "product_lookup":
+        return res.json(await productFlow(userMessage));
+
+      case "list_products":
+        return res.json(await listProductsFlow());
 
 
       default:

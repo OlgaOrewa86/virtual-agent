@@ -1,5 +1,8 @@
 // src/components/MessageBubble.jsx
 export default function MessageBubble({ msg }) {
+
+  if (!msg.text) return null;
+
   const isUser = msg.sender === "user";
 
   return (

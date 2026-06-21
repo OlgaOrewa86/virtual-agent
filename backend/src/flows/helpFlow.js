@@ -13,7 +13,8 @@ export default async function helpFlow() {
         { title: "Track an order", value: "track order" },
         { title: "Refunds & returns", value: "refund policy" },
         { title: "Store location", value: "store location" },
-        { title: "Talk to a human", value: "talk to human" }
+        { title: "Talk to a human", value: "talk to human" },
+        { title: "List products", value: "list products" }
       ]
     }
   });

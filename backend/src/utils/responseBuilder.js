@@ -11,7 +11,8 @@ export function buildResponse({
   card = null,
   buttons = null,
   list = null,
-  image = null
+  image = null,
+  product = null 
 }) {
   return {
     text,
@@ -22,6 +23,7 @@ export function buildResponse({
     buttons, // [ { label, value } ]
     list,   // [ { title, value } ]
     image,  // URL or object
+    product, // { id, title, price, category, description, image }
     timestamp: new Date().toISOString()
   };
 }

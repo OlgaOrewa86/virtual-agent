@@ -20,7 +20,7 @@ export default async function orderFlow(userMessage) {
       entities: {},
       source: "rule",
 
-      // ⭐ Buttons help guide the user
+      // Buttons help guide the user
       buttons: [
         { label: "Talk to support", value: "talk to human" }
       ]
@@ -40,7 +40,7 @@ export default async function orderFlow(userMessage) {
         entities: { orderId: orderNumber },
         source: "api",
 
-        // ⭐ Optional card for “not found”
+        // Optional card for “not found”
         card: {
           type: "order_not_found",
           title: `Order #${orderNumber}`,
@@ -54,7 +54,7 @@ export default async function orderFlow(userMessage) {
       });
     }
 
-    // ⭐ SUCCESS — return a rich order card
+    // SUCCESS — return a rich order card
     return buildResponse({
       text: `Your order ${orderNumber} is currently: ${data.status}.`,
       intent: "order_status",

@@ -6,6 +6,8 @@ import Card from "./components/Card";
 import ButtonRow from "./components/ButtonRow";
 import TypingIndicator from "./components/TypingIndicator";
 import List from "./components/List";
+import ProductCard from "./components/ProductCard";
+
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -38,20 +40,26 @@ function App() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function sendMessage(forcedValue) {
+  async function sendMessage(forcedValue, options = {}) {
+    const { silent = false } = options;
+
     const textToSend = forcedValue || input;
     if (!textToSend.trim()) return;
 
-    const userMessage = {
-      sender: "user",
-      text: textToSend,
-      time: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-    };
+    // ⭐ Only add user bubble if NOT silent
+    if (!silent) {
+      const userMessage = {
+        sender: "user",
+        text: textToSend,
+        time: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      };
 
-    setMessages((prev) => [...prev, userMessage]);
+      setMessages((prev) => [...prev, userMessage]);
+    }
+
     setInput("");
     setLoading(true);
 
@@ -71,6 +79,7 @@ function App() {
         buttons: data.buttons || null,
         list: data.list || null,
         image: data.image || null,
+        product: data.product || null,
         time: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -95,9 +104,10 @@ function App() {
     setLoading(false);
   }
 
+
   // Handle quick reply button clicks
   function handleButtonClick(value) {
-    sendMessage(value);
+    sendMessage(value, { silent: true });
   }
 
   // Auto-scroll
@@ -123,8 +133,10 @@ function App() {
           {messages.map((msg, i) => (
             <div key={i} className="flex flex-col gap-1">
               {/* Bubble */}
-              {!msg.card && <MessageBubble msg={msg} />}
-
+              {!msg.card && !msg.product && <MessageBubble msg={msg} />}
+              
+              {/* Product card */}
+              {msg.product && <ProductCard product={msg.product} />}
 
               {/* Card */}
               {msg.card && <Card card={msg.card} onClick={handleButtonClick} />}

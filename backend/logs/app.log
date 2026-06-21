@@ -1182,3 +1182,309 @@
 [2026-06-19T06:16:21.730Z] INFO: User said: hi
 [2026-06-19T06:16:21.730Z] INFO: Detected intent: smalltalk (confidence: 5)
 [2026-06-19T06:16:21.730Z] INFO: Routing: intent-based flow
+[2026-06-21T07:51:08.015Z] INFO: FAQ data loaded successfully
+[2026-06-21T07:51:08.026Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T07:51:34.011Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:51:34.011Z] INFO: Request body: {"message":"product"}
+[2026-06-21T07:51:34.012Z] INFO: User said: product
+[2026-06-21T07:51:34.013Z] INFO: Detected intent: product_lookup (confidence: 4)
+[2026-06-21T07:51:34.014Z] INFO: Routing: intent-based flow
+[2026-06-21T07:51:42.730Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:51:42.730Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T07:51:42.731Z] INFO: User said: product 1
+[2026-06-21T07:51:42.733Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T07:51:42.733Z] INFO: Routing: intent-based flow
+[2026-06-21T07:52:02.811Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:52:02.812Z] INFO: Request body: {"message":"product 3"}
+[2026-06-21T07:52:02.812Z] INFO: User said: product 3
+[2026-06-21T07:52:02.812Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T07:52:02.812Z] INFO: Routing: intent-based flow
+[2026-06-21T07:52:05.661Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:52:05.662Z] INFO: Request body: {"message":"product 2"}
+[2026-06-21T07:52:05.662Z] INFO: User said: product 2
+[2026-06-21T07:52:05.662Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T07:52:05.662Z] INFO: Routing: intent-based flow
+[2026-06-21T07:52:07.119Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:52:07.119Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T07:52:07.119Z] INFO: User said: list products
+[2026-06-21T07:52:07.120Z] INFO: Detected intent: product_lookup (confidence: 3)
+[2026-06-21T07:52:07.120Z] INFO: Routing: intent-based flow
+[2026-06-21T07:56:41.727Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:56:41.727Z] INFO: Request body: {"message":"product"}
+[2026-06-21T07:56:41.727Z] INFO: User said: product
+[2026-06-21T07:56:41.728Z] INFO: Detected intent: product_lookup (confidence: 4)
+[2026-06-21T07:56:41.728Z] INFO: Routing: intent-based flow
+[2026-06-21T07:56:45.471Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:56:45.471Z] INFO: Request body: {"message":"1"}
+[2026-06-21T07:56:45.472Z] INFO: User said: 1
+[2026-06-21T07:56:45.473Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-21T07:56:45.474Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-21T07:56:51.303Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:56:51.303Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T07:56:51.303Z] INFO: User said: product 1
+[2026-06-21T07:56:51.303Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T07:56:51.303Z] INFO: Routing: intent-based flow
+[2026-06-21T07:59:33.940Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:59:33.940Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T07:59:33.940Z] INFO: User said: product 1
+[2026-06-21T07:59:33.940Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T07:59:33.940Z] INFO: Routing: intent-based flow
+[2026-06-21T07:59:45.213Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:59:45.213Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T07:59:45.213Z] INFO: User said: product 1
+[2026-06-21T07:59:45.214Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T07:59:45.214Z] INFO: Routing: intent-based flow
+[2026-06-21T07:59:47.743Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:59:47.744Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T07:59:47.744Z] INFO: User said: list products
+[2026-06-21T07:59:47.744Z] INFO: Detected intent: product_lookup (confidence: 3)
+[2026-06-21T07:59:47.744Z] INFO: Routing: intent-based flow
+[2026-06-21T07:59:48.675Z] INFO: Incoming request: POST /agent
+[2026-06-21T07:59:48.676Z] INFO: Request body: {"message":"product 2"}
+[2026-06-21T07:59:48.676Z] INFO: User said: product 2
+[2026-06-21T07:59:48.677Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T07:59:48.677Z] INFO: Routing: intent-based flow
+[2026-06-21T08:00:44.552Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:00:44.552Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T08:00:44.552Z] INFO: User said: product 1
+[2026-06-21T08:00:44.552Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:00:44.553Z] INFO: Routing: intent-based flow
+[2026-06-21T08:02:28.458Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:02:28.471Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:02:41.445Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:02:41.456Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:03:22.692Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:03:22.702Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:03:34.012Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:03:34.013Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T08:03:34.013Z] INFO: User said: product 1
+[2026-06-21T08:03:34.014Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:03:34.014Z] INFO: Routing: intent-based flow
+[2026-06-21T08:05:33.748Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:05:33.748Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T08:05:33.748Z] INFO: User said: product 1
+[2026-06-21T08:05:33.750Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:05:33.750Z] INFO: Routing: intent-based flow
+[2026-06-21T08:13:40.616Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:13:40.616Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T08:13:40.616Z] INFO: User said: product 1
+[2026-06-21T08:13:40.617Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:13:40.617Z] INFO: Routing: intent-based flow
+[2026-06-21T08:19:43.638Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:19:43.651Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:19:57.233Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:19:57.244Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:19:59.636Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:19:59.646Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:20:04.932Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:20:04.942Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:20:24.238Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:20:24.238Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T08:20:24.239Z] INFO: User said: product 1
+[2026-06-21T08:20:24.241Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:20:24.241Z] INFO: Routing: intent-based flow
+[2026-06-21T08:20:39.262Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:20:39.262Z] INFO: Request body: {"message":"product 2"}
+[2026-06-21T08:20:39.262Z] INFO: User said: product 2
+[2026-06-21T08:20:39.265Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:20:39.265Z] INFO: Routing: intent-based flow
+[2026-06-21T08:20:43.005Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:20:43.006Z] INFO: Request body: {"message":"product 2"}
+[2026-06-21T08:20:43.006Z] INFO: User said: product 2
+[2026-06-21T08:20:43.006Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:20:43.006Z] INFO: Routing: intent-based flow
+[2026-06-21T08:20:50.168Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:20:50.168Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T08:20:50.168Z] INFO: User said: list products
+[2026-06-21T08:20:50.168Z] INFO: Detected intent: product_lookup (confidence: 3)
+[2026-06-21T08:20:50.168Z] INFO: Routing: intent-based flow
+[2026-06-21T08:22:39.107Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:22:39.120Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:22:42.921Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:22:42.933Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:22:45.162Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:22:45.173Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:23:14.299Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:23:14.310Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:23:35.764Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:23:35.775Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:23:56.589Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:23:56.601Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:24:16.774Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:24:16.786Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:24:20.794Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:24:20.803Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:24:22.180Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:24:22.190Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:24:26.012Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:24:26.022Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:24:27.670Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:24:27.678Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:24:30.070Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:24:30.080Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:24:32.180Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:24:32.190Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:24:55.346Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:24:55.346Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T08:24:55.346Z] INFO: User said: product 1
+[2026-06-21T08:24:55.347Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:24:55.347Z] INFO: Routing: intent-based flow
+[2026-06-21T08:24:58.216Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:24:58.216Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T08:24:58.216Z] INFO: User said: list products
+[2026-06-21T08:24:58.219Z] INFO: Detected intent: list_products (confidence: 5)
+[2026-06-21T08:24:58.220Z] INFO: Routing: intent-based flow
+[2026-06-21T08:25:02.679Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:25:02.679Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T08:25:02.679Z] INFO: User said: product 1
+[2026-06-21T08:25:02.680Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:25:02.680Z] INFO: Routing: intent-based flow
+[2026-06-21T08:25:05.398Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:25:05.399Z] INFO: Request body: {"message":"product 20"}
+[2026-06-21T08:25:05.399Z] INFO: User said: product 20
+[2026-06-21T08:25:05.399Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:25:05.399Z] INFO: Routing: intent-based flow
+[2026-06-21T08:25:12.177Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:25:12.177Z] INFO: Request body: {"message":"product 19"}
+[2026-06-21T08:25:12.177Z] INFO: User said: product 19
+[2026-06-21T08:25:12.177Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:25:12.177Z] INFO: Routing: intent-based flow
+[2026-06-21T08:25:16.520Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:25:16.520Z] INFO: Request body: {"message":"product 2"}
+[2026-06-21T08:25:16.520Z] INFO: User said: product 2
+[2026-06-21T08:25:16.520Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:25:16.520Z] INFO: Routing: intent-based flow
+[2026-06-21T08:25:18.632Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:25:18.633Z] INFO: Request body: {"message":"product 2"}
+[2026-06-21T08:25:18.633Z] INFO: User said: product 2
+[2026-06-21T08:25:18.633Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:25:18.633Z] INFO: Routing: intent-based flow
+[2026-06-21T08:26:16.830Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:26:16.848Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:26:32.212Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:26:32.212Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T08:26:32.212Z] INFO: User said: list products
+[2026-06-21T08:26:32.214Z] INFO: Detected intent: list_products (confidence: 5)
+[2026-06-21T08:26:32.214Z] INFO: Routing: intent-based flow
+[2026-06-21T08:26:33.971Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:26:33.971Z] INFO: Request body: {"message":"product 20"}
+[2026-06-21T08:26:33.971Z] INFO: User said: product 20
+[2026-06-21T08:26:33.974Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:26:33.974Z] INFO: Routing: intent-based flow
+[2026-06-21T08:26:39.057Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:26:39.057Z] INFO: Request body: {"message":"product 19"}
+[2026-06-21T08:26:39.057Z] INFO: User said: product 19
+[2026-06-21T08:26:39.058Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:26:39.058Z] INFO: Routing: intent-based flow
+[2026-06-21T08:27:03.430Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:27:03.441Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:27:04.450Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:27:04.461Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:27:18.484Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:27:18.484Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T08:27:18.484Z] INFO: User said: list products
+[2026-06-21T08:27:18.485Z] INFO: Detected intent: list_products (confidence: 5)
+[2026-06-21T08:27:18.485Z] INFO: Routing: intent-based flow
+[2026-06-21T08:27:20.158Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:27:20.159Z] INFO: Request body: {"message":"product 19"}
+[2026-06-21T08:27:20.159Z] INFO: User said: product 19
+[2026-06-21T08:27:20.161Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:27:20.161Z] INFO: Routing: intent-based flow
+[2026-06-21T08:27:23.220Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:27:23.220Z] INFO: Request body: {"message":"product 15"}
+[2026-06-21T08:27:23.221Z] INFO: User said: product 15
+[2026-06-21T08:27:23.221Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:27:23.221Z] INFO: Routing: intent-based flow
+[2026-06-21T08:27:27.662Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:27:27.662Z] INFO: Request body: {"message":"product 3"}
+[2026-06-21T08:27:27.663Z] INFO: User said: product 3
+[2026-06-21T08:27:27.663Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:27:27.663Z] INFO: Routing: intent-based flow
+[2026-06-21T08:28:28.624Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:28:28.624Z] INFO: Request body: {"message":"what products do you sell?"}
+[2026-06-21T08:28:28.624Z] INFO: User said: what products do you sell?
+[2026-06-21T08:28:28.625Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-21T08:28:28.625Z] INFO: Routing: intent-based flow
+[2026-06-21T08:29:23.642Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:29:23.656Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:29:27.185Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:29:27.196Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:29:47.870Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:29:47.870Z] INFO: Request body: {"message":"what products do you sell"}
+[2026-06-21T08:29:47.871Z] INFO: User said: what products do you sell
+[2026-06-21T08:29:47.873Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-21T08:29:47.873Z] INFO: Routing: intent-based flow
+[2026-06-21T08:31:05.711Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:31:05.726Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:31:19.278Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:31:19.278Z] INFO: Request body: {"message":"what products do you sell"}
+[2026-06-21T08:31:19.279Z] INFO: User said: what products do you sell
+[2026-06-21T08:31:19.280Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-21T08:31:19.280Z] INFO: Routing: intent-based flow
+[2026-06-21T08:32:32.977Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:32:32.992Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:32:47.146Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:32:47.146Z] INFO: Request body: {"message":"what products do you sell"}
+[2026-06-21T08:32:47.146Z] INFO: User said: what products do you sell
+[2026-06-21T08:32:47.147Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-21T08:32:47.147Z] INFO: Routing: intent-based flow
+[2026-06-21T08:32:51.033Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:32:51.034Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T08:32:51.034Z] INFO: User said: list products
+[2026-06-21T08:32:51.037Z] INFO: Detected intent: list_products (confidence: 5)
+[2026-06-21T08:32:51.037Z] INFO: Routing: intent-based flow
+[2026-06-21T08:32:56.966Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:32:56.967Z] INFO: Request body: {"message":"product 1"}
+[2026-06-21T08:32:56.967Z] INFO: User said: product 1
+[2026-06-21T08:32:56.967Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:32:56.968Z] INFO: Routing: intent-based flow
+[2026-06-21T08:33:21.679Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:33:21.679Z] INFO: Request body: {"message":"track order"}
+[2026-06-21T08:33:21.679Z] INFO: User said: track order
+[2026-06-21T08:33:21.680Z] INFO: Detected intent: order_status (confidence: 5)
+[2026-06-21T08:33:21.680Z] INFO: Routing: intent-based flow
+[2026-06-21T08:33:21.680Z] INFO: No order number found in message
+[2026-06-21T08:34:14.387Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:34:14.387Z] INFO: Request body: {"message":"products"}
+[2026-06-21T08:34:14.387Z] INFO: User said: products
+[2026-06-21T08:34:14.387Z] INFO: Detected intent: list_products (confidence: 5)
+[2026-06-21T08:34:14.387Z] INFO: Routing: intent-based flow
+[2026-06-21T08:34:16.625Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:34:16.625Z] INFO: Request body: {"message":"product 19"}
+[2026-06-21T08:34:16.625Z] INFO: User said: product 19
+[2026-06-21T08:34:16.625Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:34:16.625Z] INFO: Routing: intent-based flow
+[2026-06-21T08:34:24.154Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:34:24.154Z] INFO: Request body: {"message":"product 13"}
+[2026-06-21T08:34:24.154Z] INFO: User said: product 13
+[2026-06-21T08:34:24.154Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:34:24.154Z] INFO: Routing: intent-based flow
+[2026-06-21T08:37:28.825Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:37:28.839Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:38:15.009Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:38:15.023Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T08:44:07.140Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:44:07.140Z] INFO: Request body: {"message":"help"}
+[2026-06-21T08:44:07.140Z] INFO: User said: help
+[2026-06-21T08:44:07.141Z] INFO: Detected intent: help (confidence: 5)
+[2026-06-21T08:44:07.142Z] INFO: Routing: intent-based flow
+[2026-06-21T08:44:08.785Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:44:08.785Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T08:44:08.785Z] INFO: User said: list products
+[2026-06-21T08:44:08.787Z] INFO: Detected intent: list_products (confidence: 5)
+[2026-06-21T08:44:08.787Z] INFO: Routing: intent-based flow
+[2026-06-21T08:44:11.718Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:44:11.719Z] INFO: Request body: {"message":"product 18"}
+[2026-06-21T08:44:11.719Z] INFO: User said: product 18
+[2026-06-21T08:44:11.719Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:44:11.719Z] INFO: Routing: intent-based flow
+[2026-06-21T08:44:14.424Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:44:14.424Z] INFO: Request body: {"message":"product 8"}
+[2026-06-21T08:44:14.424Z] INFO: User said: product 8
+[2026-06-21T08:44:14.425Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:44:14.425Z] INFO: Routing: intent-based flow
+[2026-06-21T08:44:18.344Z] INFO: Incoming request: POST /agent
+[2026-06-21T08:44:18.344Z] INFO: Request body: {"message":"product 17"}
+[2026-06-21T08:44:18.345Z] INFO: User said: product 17
+[2026-06-21T08:44:18.345Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T08:44:18.345Z] INFO: Routing: intent-based flow

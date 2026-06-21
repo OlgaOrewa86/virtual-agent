@@ -107,43 +107,71 @@ escalate: {
     /never mind/
   ]
 },
-help: {
+  help: {
+    keywords: [
+      "help",
+      "info",
+      "information",
+      "more help",
+      "support",
+      "assist",
+      "what can you do"
+    ],
+    regex: [
+      /help/,
+      /info/,
+      /information/,
+      /what.*(can|do).*you/
+    ]
+  },
+  faq_list: {
+    keywords: [
+      "faq",
+      "faqs",
+      "show faqs",
+      "more faqs",
+      "faq list",
+      "show questions",
+      "more questions",
+      "all faqs"
+    ],
+    regex: [
+      /^faq$/,
+      /^faqs$/,
+      /show.*faq/,
+      /more.*faq/,
+      /faq.*list/
+    ]
+  },
+  product_lookup: {
+    keywords: ["product", "products", "item"],
+    regex: [
+      /product\s+\d+/i,
+      /show\s+product\s+\d+/i,
+      /item\s+\d+/i
+    ]
+  },
+  list_products: {
   keywords: [
-    "help",
-    "info",
-    "information",
-    "more help",
-    "support",
-    "assist",
-    "what can you do"
+    "products",
+    "product list",
+    "list products",
+    "show products",
+    "all products",
+    "what products",
+    "sell",
+    "catalog",
+    "inventory"
   ],
   regex: [
-    /help/,
-    /info/,
-    /information/,
-    /what.*(can|do).*you/
-  ]
-},
-faq_list: {
-  keywords: [
-    "faq",
-    "faqs",
-    "show faqs",
-    "more faqs",
-    "faq list",
-    "show questions",
-    "more questions",
-    "all faqs"
-  ],
-  regex: [
-    /^faq$/,
-    /^faqs$/,
-    /show.*faq/,
-    /more.*faq/,
-    /faq.*list/
+    /list.*products/i,
+    /show.*products/i,
+    /all.*products/i,
+    /what.*products/i,
+    /what.*sell/i,
+    /products$/i
   ]
 }
-
 
 
 
