@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Components
 import MessageBubble from "./components/MessageBubble";
@@ -115,6 +115,47 @@ function App() {
     const chat = document.getElementById("chat");
     if (chat) chat.scrollTop = chat.scrollHeight;
   }, [messages, loading]);
+
+  // --- Async webhook event polling ---
+  const pollingRef = useRef(null);
+
+  useEffect(() => {
+    pollingRef.current = setInterval(async () => {
+      try {
+        const res = await fetch("http://localhost:3001/events");
+        const newEvents = await res.json();
+
+        if (newEvents.length > 0) {
+          newEvents.forEach((evt) => {
+            setMessages((prev) => [
+              ...prev,
+              {
+                sender: evt.sender || "agent",
+                text: evt.text,
+                time: new Date().toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }),
+              },
+            ]);
+          });
+
+          // ⭐ STOP POLLING after receiving first event
+          clearInterval(pollingRef.current);
+          pollingRef.current = null;
+        }
+      } catch (err) {
+        console.error("Event polling failed:", err);
+      }
+    }, 2000);
+
+    return () => {
+      if (pollingRef.current) {
+        clearInterval(pollingRef.current);
+      }
+    };
+  }, []);
+
 
   return (
     <div className="h-screen w-full flex justify-center items-center bg-gradient-to-br from-gray-100 to-gray-200">

@@ -1488,3 +1488,74 @@
 [2026-06-21T08:44:18.345Z] INFO: User said: product 17
 [2026-06-21T08:44:18.345Z] INFO: Detected intent: product_lookup (confidence: 5)
 [2026-06-21T08:44:18.345Z] INFO: Routing: intent-based flow
+[2026-06-21T08:59:47.639Z] INFO: FAQ data loaded successfully
+[2026-06-21T08:59:47.653Z] INFO: Virtual agent server running on port 3001
+[2026-06-21T09:00:08.035Z] INFO: Incoming request: POST /agent
+[2026-06-21T09:00:08.035Z] INFO: Request body: {"message":"list products"}
+[2026-06-21T09:00:08.035Z] INFO: User said: list products
+[2026-06-21T09:00:08.036Z] INFO: Detected intent: list_products (confidence: 5)
+[2026-06-21T09:00:08.036Z] INFO: Routing: intent-based flow
+[2026-06-21T09:00:10.397Z] INFO: Incoming request: POST /agent
+[2026-06-21T09:00:10.397Z] INFO: Request body: {"message":"product 18"}
+[2026-06-21T09:00:10.398Z] INFO: User said: product 18
+[2026-06-21T09:00:10.401Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T09:00:10.401Z] INFO: Routing: intent-based flow
+[2026-06-21T09:00:12.277Z] INFO: Incoming request: POST /agent
+[2026-06-21T09:00:12.278Z] INFO: Request body: {"message":"product 20"}
+[2026-06-21T09:00:12.278Z] INFO: User said: product 20
+[2026-06-21T09:00:12.278Z] INFO: Detected intent: product_lookup (confidence: 5)
+[2026-06-21T09:00:12.278Z] INFO: Routing: intent-based flow
+[2026-06-23T07:36:19.552Z] INFO: FAQ data loaded successfully
+[2026-06-23T07:36:19.566Z] INFO: Virtual agent server running on port 3001
+[2026-06-23T07:36:32.786Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:34.906Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:36.779Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:38.781Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:40.781Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:42.779Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:44.779Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:46.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:48.781Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:50.782Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:52.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:54.781Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:56.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:36:58.781Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:00.779Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:02.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:04.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:06.501Z] INFO: Incoming request: POST /agent
+[2026-06-23T07:37:06.501Z] INFO: Request body: {"message":"submit supprt request"}
+[2026-06-23T07:37:06.501Z] INFO: User said: submit supprt request
+[2026-06-23T07:37:06.503Z] INFO: Detected intent: fallback (confidence: 0)
+[2026-06-23T07:37:06.503Z] INFO: Routing: confidence 0 → safe fallback
+[2026-06-23T07:37:06.781Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:08.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:09.012Z] INFO: [object Object]
+[2026-06-23T07:37:10.781Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:12.779Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:14.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:16.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:18.781Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:20.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:22.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:37:24.780Z] INFO: Incoming request: GET /events
+[2026-06-23T07:47:40.580Z] INFO: FAQ data loaded successfully
+[2026-06-23T07:47:40.595Z] INFO: Virtual agent server running on port 3001
+[2026-06-23T07:47:48.817Z] INFO: Incoming request: GET /events
+[2026-06-23T07:47:50.809Z] INFO: Incoming request: GET /events
+[2026-06-23T07:47:52.809Z] INFO: Incoming request: GET /events
+[2026-06-23T07:47:54.164Z] INFO: Incoming request: POST /agent
+[2026-06-23T07:47:54.164Z] INFO: Request body: {"message":"submit ticket"}
+[2026-06-23T07:47:54.164Z] INFO: User said: submit ticket
+[2026-06-23T07:47:54.166Z] INFO: Detected intent: support_request (confidence: 5)
+[2026-06-23T07:47:54.166Z] INFO: Routing: intent-based flow
+[2026-06-23T07:47:54.167Z] INFO: Mock ticket service started for TCK-7298
+[2026-06-23T07:47:54.809Z] INFO: Incoming request: GET /events
+[2026-06-23T07:47:56.809Z] INFO: Incoming request: GET /events
+[2026-06-23T07:47:58.809Z] INFO: Incoming request: GET /events
+[2026-06-23T07:47:59.184Z] INFO: Incoming request: POST /webhook/support-update
+[2026-06-23T07:47:59.184Z] INFO: Request body: {"event":"ticket.assigned","ticketId":"TCK-7298","agent":"Sarah"}
+[2026-06-23T07:47:59.184Z] INFO: Webhook received: ticket.assigned for TCK-7298 (agent: Sarah)
+[2026-06-23T07:47:59.186Z] INFO: Mock webhook sent for ticket TCK-7298
+[2026-06-23T07:48:00.808Z] INFO: Incoming request: GET /events
