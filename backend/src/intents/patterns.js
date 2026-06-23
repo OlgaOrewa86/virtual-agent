@@ -171,6 +171,34 @@ escalate: {
     /what.*sell/i,
     /products$/i
   ]
+},
+support_request: {
+  keywords: [
+    "support",
+    "ticket",
+    "support request",
+    "submit support",
+    "create ticket",
+    "open ticket",
+    "raise ticket",
+    "report issue",
+    "report problem",
+    "bug report",
+    "help request"
+  ],
+  regex: [
+    /support.*request/i,
+    /support.*req/i,
+    /sup+ort/i,                     // typo tolerant
+    /submit.*(ticket|request)/i,
+    /create.*(ticket|support)/i,
+    /open.*(ticket|support)/i,
+    /raise.*ticket/i,
+    /support.*ticket/i,
+    /report.*(issue|problem|bug)/i,
+    /file.*(ticket|request)/i,
+    /need.*(help|support)/i
+  ]
 }
 
 

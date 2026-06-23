@@ -18,6 +18,11 @@ import helpFlow from "./flows/helpFlow.js";
 import faqListFlow from "./flows/faqListFlow.js";
 import productFlow from "./flows/productFlow.js";
 import listProductsFlow from "./flows/listProductsFlow.js";
+import supportRequestFlow from "./flows/supportRequestFlow.js";
+
+import pushBotMessage from "./utils/pushBotMessage.js";
+import { addEvent, getEvents, clearEvents } from "./store/eventStore.js";
+
 
 import { buildResponse } from "./utils/responseBuilder.js";
 
@@ -39,6 +44,29 @@ app.get("/health", (req, res) => {
 
 // --- Mock API route ---
 app.get("/api/orders/:id", orderApi);
+
+app.get("/events", (req, res) => {
+  const events = getEvents();
+  clearEvents();
+  res.json(events);
+});
+
+
+// --- Webhook endpoint for support ticket updates ---
+app.post("/webhook/support-update", (req, res) => {
+  const { event, ticketId, agent } = req.body;
+
+  logger.info(`Webhook received: ${event} for ${ticketId} (agent: ${agent})`);
+
+  // Store event
+  addEvent({ event, ticketId, agent });
+
+  // Push async bot message
+  pushBotMessage(`Your support ticket ${ticketId} has been assigned to ${agent}.`);
+
+  res.status(200).json({ status: "ok" });
+});
+
 
 // --- Main virtual agent endpoint ---
 app.post("/agent", async (req, res) => {
@@ -110,6 +138,9 @@ app.post("/agent", async (req, res) => {
 
       case "list_products":
         return res.json(await listProductsFlow());
+
+      case "support_request":
+        return res.json(await supportRequestFlow());
 
 
       default:
