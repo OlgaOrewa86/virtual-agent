@@ -12,7 +12,8 @@ export function buildResponse({
   buttons = null,
   list = null,
   image = null,
-  product = null 
+  product = null,
+  startPolling = false  
 }) {
   return {
     text,
@@ -23,7 +24,8 @@ export function buildResponse({
     buttons, // [ { label, value } ]
     list,   // [ { title, value } ]
     image,  // URL or object
-    product, // { id, title, price, category, description, image }
+    product,
+    startPolling, // { id, title, price, category, description, image }
     timestamp: new Date().toISOString()
   };
 }

@@ -11,9 +11,10 @@ export default async function supportRequestFlow() {
 
   // Immediate bot response
   return buildResponse({
-    text: "Your support request has been submitted. I’ll notify you when it’s assigned.",
+    text: `Your support ticket ${ticketId} has been created. I’ll notify you when it’s assigned.`,
     intent: "support_request",
     source: "api",
-    ticketId
+    ticketId,
+    startPolling: true 
   });
 }

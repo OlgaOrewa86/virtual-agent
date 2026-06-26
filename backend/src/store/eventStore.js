@@ -12,3 +12,5 @@ export function getEvents() {
 export function clearEvents() {
   events = [];
 }
+console.log("EVENT STORE LOADED", Math.random());
+

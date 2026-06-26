@@ -1,0 +1,94 @@
+[
+  {
+    "intent": "faq",
+    "examples": [
+      "what time do you open",
+      "when do you close",
+      "where is your store located",
+      "what is your refund policy",
+      "how long does shipping take"
+    ]
+  },
+  {
+    "intent": "order_status",
+    "examples": [
+      "where is my order",
+      "can you track my package",
+      "what's the status of my order",
+      "has my package been delivered yet"
+    ]
+  },
+  {
+    "intent": "escalate",
+    "examples": [
+      "I want to talk to a human",
+      "connect me to an agent",
+      "I need customer service",
+      "can I speak to someone"
+    ]
+  },
+  {
+    "intent": "smalltalk",
+    "examples": [
+      "hi there",
+      "hello",
+      "good morning",
+      "thanks",
+      "bye"
+    ]
+  },
+  {
+    "intent": "cancel_escalation",
+    "examples": [
+      "never mind",
+      "cancel that request",
+      "stop the escalation",
+      "ignore that"
+    ]
+  },
+  {
+    "intent": "help",
+    "examples": [
+      "I need help",
+      "can you assist me",
+      "what can you do",
+      "I need some information"
+    ]
+  },
+  {
+    "intent": "faq_list",
+    "examples": [
+      "show me the faqs",
+      "what questions can I ask",
+      "list your faqs",
+      "show all questions"
+    ]
+  },
+  {
+    "intent": "product_lookup",
+    "examples": [
+      "show product 12345",
+      "I want to see item 42",
+      "display product number 88",
+      "find product 9001"
+    ]
+  },
+  {
+    "intent": "list_products",
+    "examples": [
+      "show me your products",
+      "what do you sell",
+      "list all products",
+      "show your catalog"
+    ]
+  },
+  {
+    "intent": "support_request",
+    "examples": [
+      "I need to submit a support ticket",
+      "I want to report an issue",
+      "I need to create a ticket",
+      "I want to file a bug report"
+    ]
+  }
+]
