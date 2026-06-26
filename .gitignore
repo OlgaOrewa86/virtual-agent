@@ -9,6 +9,10 @@ backend/target/
 backend/.idea/
 backend/*.iml
 
+### Logs ###
+*.log
+logs/
+
 ### Env ###
 *.env
 .env.*

@@ -1,6 +1,5 @@
 // src/components/MessageBubble.jsx
 export default function MessageBubble({ msg }) {
-
   if (!msg.text) return null;
 
   const isUser = msg.sender === "user";
@@ -17,7 +16,22 @@ export default function MessageBubble({ msg }) {
               : "bg-gray-100 text-gray-800 rounded-bl-none"
           }`}
       >
+        {/* Main message */}
         {msg.text}
+
+        {/* Ticket ID (if present) */}
+        {msg.ticketId && (
+          <div className="mt-1 text-[11px] text-gray-500">
+            Ticket ID: {msg.ticketId}
+          </div>
+        )}
+
+        {/* Assigned agent (if present) */}
+        {msg.agent && (
+          <div className="mt-1 text-[11px] text-gray-500">
+            Assigned agent: {msg.agent}
+          </div>
+        )}
       </div>
 
       {/* Timestamp */}

@@ -20,11 +20,12 @@ import productFlow from "./flows/productFlow.js";
 import listProductsFlow from "./flows/listProductsFlow.js";
 import supportRequestFlow from "./flows/supportRequestFlow.js";
 
-import pushBotMessage from "./utils/pushBotMessage.js";
 import { addEvent, getEvents, clearEvents } from "./store/eventStore.js";
 
 
 import { buildResponse } from "./utils/responseBuilder.js";
+import { getEmbedder } from "./intents/embedder.js";
+
 
 import orderApi from "./api/orderApi.js";
 
@@ -47,9 +48,25 @@ app.get("/api/orders/:id", orderApi);
 
 app.get("/events", (req, res) => {
   const events = getEvents();
-  clearEvents();
-  res.json(events);
+
+  if (events.length > 0) {
+    res.json({
+      events,
+      done: true
+    });
+
+    // Clear AFTER sending
+    clearEvents();
+    return;
+  }
+
+  res.json({
+    events: [],
+    done: false
+  });
 });
+
+
 
 
 // --- Webhook endpoint for support ticket updates ---
@@ -59,10 +76,13 @@ app.post("/webhook/support-update", (req, res) => {
   logger.info(`Webhook received: ${event} for ${ticketId} (agent: ${agent})`);
 
   // Store event
-  addEvent({ event, ticketId, agent });
-
-  // Push async bot message
-  pushBotMessage(`Your support ticket ${ticketId} has been assigned to ${agent}.`);
+  addEvent({
+    event,
+    ticketId,
+    agent,
+    sender: "agent",
+    text: `Your support ticket ${ticketId} has been assigned to ${agent}.`
+  });
 
   res.status(200).json({ status: "ok" });
 });
@@ -160,6 +180,11 @@ app.post("/agent", async (req, res) => {
 
 // --- Start server ---
 const PORT = process.env.PORT || 3001;
+
+// Warm up MiniLM model before handling any requests
+await getEmbedder();
+logger.info("MiniLM embedder loaded and ready.");
+
 app.listen(PORT, () => {
   logger.info(`Virtual agent server running on port ${PORT}`);
 });

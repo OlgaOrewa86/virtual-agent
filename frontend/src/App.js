@@ -39,6 +39,8 @@ function App() {
 
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [shouldPoll, setShouldPoll] = useState(false);
+
 
   async function sendMessage(forcedValue, options = {}) {
     const { silent = false } = options;
@@ -72,9 +74,16 @@ function App() {
 
       const data = await res.json();
 
+      //  Start conditional polling if backend requests it
+      if (data.startPolling) {
+        setShouldPoll(true);
+}
+
       const agentMessage = {
         sender: "agent",
         text: data.text,
+        ticketId: data.ticketId || null,
+        agent: data.agent,
         card: data.card || null,
         buttons: data.buttons || null,
         list: data.list || null,
@@ -119,42 +128,51 @@ function App() {
   // --- Async webhook event polling ---
   const pollingRef = useRef(null);
 
-  useEffect(() => {
-    pollingRef.current = setInterval(async () => {
-      try {
-        const res = await fetch("http://localhost:3001/events");
-        const newEvents = await res.json();
+ useEffect(() => {
+  if (!shouldPoll) return;
 
-        if (newEvents.length > 0) {
-          newEvents.forEach((evt) => {
-            setMessages((prev) => [
-              ...prev,
-              {
-                sender: evt.sender || "agent",
-                text: evt.text,
-                time: new Date().toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                }),
-              },
-            ]);
-          });
+  async function poll() {
+    try {
+      const res = await fetch("http://localhost:3001/events");
+      const data = await res.json();
 
-          // ⭐ STOP POLLING after receiving first event
-          clearInterval(pollingRef.current);
-          pollingRef.current = null;
-        }
-      } catch (err) {
-        console.error("Event polling failed:", err);
-      }
-    }, 2000);
+      // If events exist, append them and THEN stop polling
+      if (data.events && data.events.length > 0) {
+        data.events.forEach((evt) => {
+          setMessages((prev) => [
+            ...prev,
+            {
+              sender: evt.sender || "agent",
+              text: evt.text,
+              time: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+            },
+          ]);
+        });
 
-    return () => {
-      if (pollingRef.current) {
+        // NOW stop polling
+        setShouldPoll(false);
         clearInterval(pollingRef.current);
+        pollingRef.current = null;
+        return;
       }
-    };
-  }, []);
+
+      // Otherwise keep polling until event arrives
+    } catch (err) {
+      console.error("Event polling failed:", err);
+    }
+  }
+
+  pollingRef.current = setInterval(poll, 1000);
+
+  return () => {
+    if (pollingRef.current) clearInterval(pollingRef.current);
+  };
+}, [shouldPoll]);
+
+
 
 
   return (

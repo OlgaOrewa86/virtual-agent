@@ -8,11 +8,15 @@ export default function startMockTicketService(ticketId) {
   // Simulate async external system (Zendesk, Salesforce, etc.)
   setTimeout(async () => {
     try {
+      const agents = ["Sarah", "John", "Emily", "Michael", "Ava"];
+      const agent = agents[Math.floor(Math.random() * agents.length)];
+
       await axios.post("http://localhost:3001/webhook/support-update", {
         event: "ticket.assigned",
         ticketId,
-        agent: "Sarah"
+        agent
       });
+
 
       logger.info(`Mock webhook sent for ticket ${ticketId}`);
     } catch (err) {
