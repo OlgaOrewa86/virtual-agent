@@ -1,11 +1,9 @@
-//fallbackPrompt.js
-
 import fs from "fs";
 import path from "path";
 
-export function buildFallbackPrompt(userMessage, faqMatches = []) {
+export function buildFaqPrompt(userMessage, faqMatches = []) {
   const template = fs.readFileSync(
-    path.join(process.cwd(), "prompts", "fallbackPrompt.txt"),
+    path.join(process.cwd(), "prompts", "faqPrompt.txt"),
     "utf8"
   );
 
