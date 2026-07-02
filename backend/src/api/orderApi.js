@@ -1,13 +1,13 @@
 // src/api/orderApi.js
-import logger from "../utils/logger.js";
+import logger from '../utils/logger.js';
 
 // Mock database of orders
 const mockOrders = {
-  "12345": { status: "Processing" },
-  "23456": { status: "Shipped" },
-  "34567": { status: "Out for delivery" },
-  "45678": { status: "Delivered" },
-  "56789": { status: "Cancelled" }
+  12345: { status: 'Processing' },
+  23456: { status: 'Shipped' },
+  34567: { status: 'Out for delivery' },
+  45678: { status: 'Delivered' },
+  56789: { status: 'Cancelled' }
 };
 
 export default function orderApi(req, res) {
@@ -19,7 +19,7 @@ export default function orderApi(req, res) {
 
   if (!order) {
     logger.info(`Order not found: ${orderId}`);
-    return res.json({ error: "not found" });
+    return res.json({ error: 'not found' });
   }
 
   return res.json({

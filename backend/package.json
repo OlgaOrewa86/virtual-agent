@@ -9,7 +9,13 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:unit": "node --experimental-vm-modules ./node_modules/.bin/jest --config jest.config.mjs tests/unit",
+    "test:integration": "node --experimental-vm-modules ./node_modules/.bin/jest --config jest.config.mjs tests/integration",
+    "test:nlu": "node --experimental-vm-modules ./node_modules/.bin/jest --config jest.config.mjs tests/nlu",
+    "validate:routing": "node --experimental-vm-modules ./node_modules/.bin/jest --config jest.config.mjs tests/routing",
+    "test": "npm run test:unit && npm run test:integration && npm run test:nlu && npm run validate:routing",
+    "lint": "eslint . --ext .js",
+    "build:backend": "echo 'No backend build step required'"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +32,12 @@
     "winston": "^3.19.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "eslint": "^10.6.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.9.4",
+    "supertest": "^7.2.2"
   }
 }

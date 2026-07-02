@@ -5,36 +5,17 @@ import { loadIntentVectors } from "./model.js";
 import { cosine } from "./similarity.js";
 import { logNLU } from "./nluLogger.js";
 
-export default async function classifyIntent(message) {
-  if (!message || typeof message !== "string") {
-    return { intent: "fallback", confidence: 0 };
-  }
-
-  const text = message.toLowerCase().trim();
-
-  // -------------------------------
-  // 1. RULE‑BASED SCORING
-  // -------------------------------
+// -------------------------------------------------------------
+// 1. RULE SCORING
+// -------------------------------------------------------------
+function scoreRules(text) {
   const scores = {};
   for (const intent in patterns) scores[intent] = 0;
 
-  // Strong signal: order number
+  // Order number override
   const orderNumberRegex = /\b\d{5,10}\b/;
-  const hasOrderNumber = orderNumberRegex.test(text);
-
-  if (hasOrderNumber) {
-    // ⭐ Force order_status to win immediately
-    logNLU({
-      message,
-      ruleIntent: "order_status",
-      ruleScore: 5,
-      semanticIntent: null,
-      semanticScore: 0,
-      finalIntent: "order_status",
-      finalConfidence: 5
-    });
-
-    return { intent: "order_status", confidence: 5 };
+  if (orderNumberRegex.test(text)) {
+    return { intent: "order_status", score: 5, override: true };
   }
 
   // Keyword scoring
@@ -46,21 +27,16 @@ export default async function classifyIntent(message) {
 
       // Exact match
       if (text === word) {
-        if (intent === "support_request") {
-          scores.support_request = Math.max(scores.support_request, 1);
-        } else {
-          scores[intent] = Math.max(scores[intent], 4);
-        }
+        scores[intent] = intent === "support_request"
+          ? Math.max(scores[intent], 1)
+          : Math.max(scores[intent], 4);
       }
 
       // Whole word match
       if (wholeWord.test(text)) {
-        if (intent === "support_request") {
-          // ⭐ Prevent support_request from overpowering other intents
-          scores.support_request = Math.max(scores.support_request, 1);
-        } else {
-          scores[intent] = Math.max(scores[intent], 3);
-        }
+        scores[intent] = intent === "support_request"
+          ? Math.max(scores[intent], 1)
+          : Math.max(scores[intent], 3);
       }
     }
   }
@@ -71,38 +47,31 @@ export default async function classifyIntent(message) {
 
     for (const pattern of regex) {
       if (pattern.test(text)) {
-        if (intent === "support_request") {
-          // ⭐ Support request regex should NOT override everything
-          scores.support_request = Math.max(scores.support_request, 2);
-        } else {
-          scores[intent] = Math.max(scores[intent], 5);
-        }
+        scores[intent] = intent === "support_request"
+          ? Math.max(scores[intent], 2)
+          : Math.max(scores[intent], 5);
       }
     }
   }
 
-  // Best rule‑based intent
+  // Best rule intent
   const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-  const [ruleIntent, ruleScore] = sorted[0];
+  const [bestIntent, bestScore] = sorted[0];
 
-  // If rule‑based score is strong, return immediately
-  if (ruleScore >= 4) {
-    logNLU({
-      message,
-      ruleIntent,
-      ruleScore,
-      semanticIntent: null,
-      semanticScore: 0,
-      finalIntent: ruleIntent,
-      finalConfidence: ruleScore
-    });
-    return { intent: ruleIntent, confidence: ruleScore };
+  return { intent: bestIntent, score: bestScore, override: false };
+}
+
+// -------------------------------------------------------------
+// 2. SEMANTIC SCORING
+// -------------------------------------------------------------
+async function scoreSemantic(text) {
+  const userVec = await embed(text);
+
+  // Semantic unavailable
+  if (!userVec || userVec.length === 0) {
+    return { intent: null, score: 0, sim: 0, available: false };
   }
 
-  // -----------------------------------
-  // 2. SEMANTIC NLU (embedding similarity)
-  // -----------------------------------
-  const userVec = await embed(text);
   const intentVectors = await loadIntentVectors();
 
   let bestIntent = "fallback";
@@ -116,53 +85,71 @@ export default async function classifyIntent(message) {
     }
   }
 
-  // Map similarity → your 0–5 confidence scale
-  let nluConfidence = 0;
-  if (bestSim > 0.80) nluConfidence = 5;
-  else if (bestSim > 0.65) nluConfidence = 4;
-  else if (bestSim > 0.50) nluConfidence = 3;
-  else if (bestSim > 0.35) nluConfidence = 2;
-  else if (bestSim > 0.20) nluConfidence = 1;
+  let score = 0;
+  if (bestSim > 0.80) score = 5;
+  else if (bestSim > 0.65) score = 4;
+  else if (bestSim > 0.50) score = 3;
+  else if (bestSim > 0.35) score = 2;
+  else if (bestSim > 0.20) score = 1;
 
-  // -----------------------------------
-  // 3. HYBRID DECISION LOGIC
-  // -----------------------------------
-  let finalIntent;
-  let finalConfidence;
-
-  if (ruleScore > 0) {
-    if (nluConfidence > ruleScore) {
-      finalIntent = bestIntent;
-      finalConfidence = nluConfidence;
-    } else {
-      finalIntent = ruleIntent;
-      finalConfidence = ruleScore;
-    }
-  } else {
-    if (nluConfidence === 0) {
-      finalIntent = "fallback";
-      finalConfidence = 0;
-    } else {
-      finalIntent = bestIntent;
-      finalConfidence = nluConfidence;
-    }
-  }
-
-  // NLU LOGGING
-  logNLU({
-    message,
-    ruleIntent,
-    ruleScore,
-    semanticIntent: bestIntent,
-    semanticScore: bestSim,
-    finalIntent,
-    finalConfidence
-  });
-
-  return { intent: finalIntent, confidence: finalConfidence };
+  return { intent: bestIntent, score, sim: bestSim, available: true };
 }
 
-// Utility: escape regex special chars
+// -------------------------------------------------------------
+// 3. DECISION LOGIC
+// -------------------------------------------------------------
+function decideIntent(rule, semantic) {
+  // Strong rule-based override
+  if (rule.override || rule.score >= 4) {
+    return { intent: rule.intent, confidence: rule.score };
+  }
+
+  // Semantic unavailable
+  if (!semantic.available) {
+    if (rule.score === 0) {
+      return { intent: "fallback", confidence: 0 };
+    }
+    return { intent: rule.intent, confidence: rule.score };
+  }
+
+  // Hybrid logic
+  if (semantic.score > rule.score) {
+    return { intent: semantic.intent, confidence: semantic.score };
+  }
+
+  return { intent: rule.intent, confidence: rule.score };
+}
+
+// -------------------------------------------------------------
+// 4. MAIN CLASSIFIER
+// -------------------------------------------------------------
+export default async function classifyIntent(message) {
+  if (!message || typeof message !== "string") {
+    return { intent: "fallback", confidence: 0 };
+  }
+
+  const text = message.toLowerCase().trim();
+
+  const rule = scoreRules(text);
+  const semantic = await scoreSemantic(text);
+  const decision = decideIntent(rule, semantic);
+
+  logNLU({
+    message,
+    ruleIntent: rule.intent,
+    ruleScore: rule.score,
+    semanticIntent: semantic.intent,
+    semanticScore: semantic.sim,
+    finalIntent: decision.intent,
+    finalConfidence: decision.confidence
+  });
+
+  return decision;
+}
+
+// -------------------------------------------------------------
+// Utility
+// -------------------------------------------------------------
 function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
