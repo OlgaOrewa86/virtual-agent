@@ -22,7 +22,7 @@ import supportRequestFlow from "./flows/supportRequestFlow.js";
 
 import { addEvent, getEvents, clearEvents } from "./store/eventStore.js";
 import { buildResponse } from "./utils/responseBuilder.js";
-import { getEmbedder } from "./intents/embedder.js";
+
 
 import orderApi from "./api/orderApi.js";
 

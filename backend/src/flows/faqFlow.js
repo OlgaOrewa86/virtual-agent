@@ -5,9 +5,7 @@ import levenshtein from "fast-levenshtein";
 import logger from "../utils/logger.js";
 import { buildResponse } from "../utils/responseBuilder.js";
 
-function fuzzyMatch(a, b) {
-  return levenshtein.get(a, b) <= 2;
-}
+
 
 function getRelatedFAQs(match, faqData) {
   if (!match.related) return [];

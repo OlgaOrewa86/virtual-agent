@@ -35,7 +35,7 @@ export default async function productFlow(userMessage) {
         { label: "List products", value: "list products" }
       ]
     });
-  } catch (err) {
+  } catch {
     return buildResponse({
       text: "I couldn't find that product. Try another ID.",
       intent: "product_lookup_not_found",
