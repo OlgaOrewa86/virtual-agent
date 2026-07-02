@@ -9,26 +9,45 @@ let embedder = null;
  */
 export async function getEmbedder() {
   if (!embedder) {
-    embedder = await pipeline(
-      "feature-extraction",
-      "Xenova/all-MiniLM-L6-v2"
-    );
+    try {
+      embedder = await pipeline(
+        "feature-extraction",
+        "Xenova/all-MiniLM-L6-v2"
+      );
+    } catch (err) {
+      console.error("Failed to load embedder model:", err);
+      embedder = null; // ensure we don't cache a broken instance
+    }
   }
   return embedder;
 }
 
 /**
  * Returns a semantic embedding vector for a given text.
+ * Always safe: never throws, always returns [] on failure.
  */
 export async function embed(text) {
   if (!text || typeof text !== "string") {
     return [];
   }
 
-  const model = await getEmbedder();
-  const output = await model(text);
+  let model;
+  try {
+    model = await getEmbedder();
+    if (!model) {
+      return []; // model failed to load
+    }
+  } catch (err) {
+    console.error("Embedder initialization error:", err);
+    return [];
+  }
 
-  // output shape: [1][tokens][768]
-  // We take the first token embedding (CLS token)
-  return output[0][0];
+  try {
+    const output = await model(text);
+    // output shape: [1][tokens][768]
+    return output[0][0];
+  } catch (err) {
+    console.error("Embedder error:", err);
+    return []; // semantic unavailable
+  }
 }

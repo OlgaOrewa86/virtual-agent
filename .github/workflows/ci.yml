@@ -1,0 +1,62 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # -------------------------
+      # BACKEND
+      # -------------------------
+      - name: Install backend dependencies
+        run: cd backend && npm ci
+
+      - name: Lint backend
+        run: cd backend && npm run lint
+
+      - name: Run unit tests
+        run: cd backend && npm run test:unit
+
+      - name: Run integration tests
+        run: cd backend && npm run test:integration
+
+      - name: Run NLU tests
+        run: cd backend && npm run test:nlu
+
+      - name: Validate routing JSON
+        run: cd backend && npm run validate:routing
+
+      - name: Build backend
+        run: cd backend && npm run build:backend
+
+      # -------------------------
+      # FRONTEND
+      # -------------------------
+      - name: Install frontend dependencies
+        run: cd frontend && npm ci
+
+      - name: Lint frontend
+        run: cd frontend && npm run lint
+
+      - name: Build frontend
+        run: cd frontend && npm run build
+
+      # -------------------------
+      # SECURITY
+      # -------------------------
+      - name: Check for secrets
+        uses: zricethezav/gitleaks-action@v2
