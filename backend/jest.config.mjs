@@ -1,3 +1,5 @@
 export default {
-  testEnvironment: 'node'
+  setupFiles: ["<rootDir>/tests/setup.mjs"],
+  testEnvironment: "node",
+  transform: {}
 };

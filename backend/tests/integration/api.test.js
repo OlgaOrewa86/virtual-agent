@@ -1,27 +1,3 @@
-import { jest } from '@jest/globals';
-
-// Mock OpenAI BEFORE importing app.js
-await jest.unstable_mockModule('openai', () => ({
-  OpenAI: jest.fn().mockImplementation(() => ({
-    chat: {
-      completions: {
-        create: async () => ({
-          choices: [{ message: { content: 'mocked response' } }]
-        })
-      }
-    }
-  }))
-}));
-
-// Mock llmClient.js BEFORE importing app.js
-await jest.unstable_mockModule('../../src/llm/llmClient.js', () => ({
-  callLLM: async () => 'mocked llm response'
-}));
-
-// Mock embedder
-await jest.unstable_mockModule('../../src/intents/embedder.js', () => ({
-  embed: async () => []
-}));
 
 import request from 'supertest';
 import app from '../../src/app.js';
