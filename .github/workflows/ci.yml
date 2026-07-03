@@ -58,6 +58,16 @@ jobs:
       - name: Build frontend
         run: cd frontend && npm run build
 
+      
+      # -------------------------
+      # SECURITY — Dependency Scan
+      # -------------------------
+      - name: Run OSV dependency vulnerability scan
+        uses: google/osv-scanner-action@v1
+        with:
+          scan: "."
+
+
       # -------------------------
       # SECURITY
       # -------------------------
