@@ -63,7 +63,7 @@ jobs:
       # SECURITY — Dependency Scan
       # -------------------------
       - name: Run OSV dependency vulnerability scan
-        uses: google/osv-scanner-action@v1
+        uses: google/osv-scanner-action@v0
         with:
           scan: "."
 
