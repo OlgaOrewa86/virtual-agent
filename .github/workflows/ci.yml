@@ -62,11 +62,14 @@ jobs:
       # -------------------------
       # SECURITY — Dependency Scan
       # -------------------------
-      - name: Run OSV dependency vulnerability scan
-        uses: google/osv-scanner-action@v0
-        with:
-          scan: "."
+      - name: Install OSV Scanner
+        run: |
+          curl -sSL https://github.com/google/osv-scanner/releases/latest/download/osv-scanner_linux_amd64 \
+            -o osv-scanner
+          chmod +x osv-scanner
 
+      - name: Run OSV dependency vulnerability scan
+        run: ./osv-scanner --recursive .
 
       # -------------------------
       # SECURITY
