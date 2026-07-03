@@ -6,12 +6,27 @@
 import OpenAI from "openai";
 import logger from "../utils/logger.js";
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+const IS_CI = process.env.CI === "true";
+let client = null;
+
+function getClient() {
+  if (IS_CI) {
+    throw new Error("LLM client disabled in CI mode");
+  }
+
+  if (!client) {
+    client = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY
+    });
+  }
+
+  return client;
+}
 
 export async function callLLM(prompt) {
   try {
+    const client = getClient();
+
     const response = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
