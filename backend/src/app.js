@@ -33,6 +33,12 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(requestLogger);
 
+// --- Logging validation debug endpoint ---
+app.get("/debug/force-error", () => {
+  throw new Error("Forced error for logging validation");
+});
+
+
 // --- Health check endpoint ---
 app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Virtual agent running" });

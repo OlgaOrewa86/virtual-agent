@@ -1,4 +1,3 @@
-// src/utils/logger.js
 import winston from "winston";
 
 const logger = winston.createLogger({
@@ -6,9 +5,7 @@ const logger = winston.createLogger({
 
   format: winston.format.combine(
     winston.format.timestamp(),
-    winston.format.printf(({ timestamp, level, message }) => {
-      return `[${timestamp}] ${level.toUpperCase()}: ${message}`;
-    })
+    winston.format.json()   // <‑‑ JSON output instead of printf
   ),
 
   transports: [
