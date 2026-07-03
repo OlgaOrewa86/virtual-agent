@@ -51,12 +51,14 @@ jobs:
       # BACKEND HEALTH CHECK
       # -------------------------
       - name: Run backend health check
+        env:
+          PORT: 3000
+          CI: "true"
         run: |
           cd backend
-          PORT=3000 CI=true node src/server.js &
+          node src/server.js &
           sleep 3
           curl -f http://localhost:3000/health
-
 
 
       # -------------------------
