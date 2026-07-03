@@ -60,6 +60,50 @@ jobs:
           sleep 3
           curl -f http://localhost:3000/health
 
+      # -------------------------
+      # BACKEND LOGGING VALIDATION
+      # -------------------------
+      - name: Validate backend logging
+        env:
+          PORT: 3000
+          CI: "true"
+        run: |
+          cd backend
+
+          # 1. Start backend in CI mode
+          node src/server.js &
+          sleep 3
+
+          # 2. Trigger a known error route
+          curl -f http://localhost:3000/debug/force-error || true
+
+          # 3. Check that logs directory exists
+          if [ ! -d "logs" ]; then
+            echo "❌ Logs directory missing"
+            exit 1
+          fi
+
+          # 4. Check that at least one log file exists
+          LOGFILE=$(ls logs/*.log | head -n 1)
+          if [ -z "$LOGFILE" ]; then
+            echo "❌ No log files found"
+            exit 1
+          fi
+
+          # 5. Validate JSON structure of each log line
+          while IFS= read -r line; do
+            echo "$line" | jq empty || {
+              echo "❌ Invalid JSON log entry:"
+              echo "$line"
+              exit 1
+            }
+          done < "$LOGFILE"
+
+          echo "✅ Logging validation passed"
+
+
+
+
 
       # -------------------------
       # FRONTEND
