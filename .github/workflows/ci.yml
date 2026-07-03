@@ -53,9 +53,10 @@ jobs:
       - name: Run backend health check
         run: |
           cd backend
-          PORT=3000 node src/server.js &
+          PORT=3000 CI=true node src/server.js &
           sleep 3
           curl -f http://localhost:3000/health
+
 
 
       # -------------------------
