@@ -26,12 +26,23 @@ import { buildResponse } from "./utils/responseBuilder.js";
 
 import orderApi from "./api/orderApi.js";
 
+
 const app = express();
 
 // middleware
 app.use(cors());
 app.use(bodyParser.json());
+
+// Suppress noisy polling logs from /events
+app.use((req, res, next) => {
+  if (req.path !== "/events") {
+    logger.info(`Incoming request: ${req.method} ${req.path}`);
+  }
+  next();
+});
+
 app.use(requestLogger);
+
 
 // --- Logging validation debug endpoint ---
 app.get("/debug/force-error", () => {
@@ -76,6 +87,30 @@ app.post("/webhook/support-update", (req, res) => {
 
   res.status(200).json({ status: "ok" });
 });
+
+app.use("/routing-ui", express.static("./src/routing"));
+
+
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.get("/routing", async (req, res) => {
+  try {
+    const filePath = path.join(__dirname, "routing", "routing.json");
+    const raw = await fs.promises.readFile(filePath, "utf8");
+    const routing = JSON.parse(raw);
+    res.json(routing);
+  } catch (err) {
+    logger.error("Failed to load routing.json", err);
+    res.status(500).json({ error: "Could not load routing.json" });
+  }
+});
+
+
 
 // --- Main virtual agent endpoint ---
 app.post("/agent", async (req, res) => {

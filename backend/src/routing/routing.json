@@ -1,0 +1,202 @@
+{
+  "intents": {
+    "support_request": {
+      "description": "User wants to create a support ticket",
+      "patterns": {
+        "keywords": [
+          "submit ticket", "create ticket", "open ticket", "raise ticket",
+          "file ticket", "support request", "bug report", "support ticket"
+        ],
+        "regex": [
+          "create.*(ticket|support.*ticket)",
+          "open.*(ticket|support)",
+          "submit.*(ticket|request)",
+          "raise.*ticket",
+          "file.*(ticket|request)",
+          "report.*bug",
+          "support.*ticket"
+        ]
+      },
+      "next_state": "supportRequestFlow"
+    },
+
+    "order_status": {
+      "description": "User wants to check an order",
+      "patterns": {
+        "keywords": [
+          "track", "order", "status", "where is my", "order number", "package"
+        ],
+        "regex": [
+          "where.*order",
+          "track.*order",
+          "order.*status",
+          "package.*(arrive|coming|delivered)"
+        ]
+      },
+      "next_state": "orderFlow"
+    },
+
+    "escalate": {
+      "description": "User wants to talk to a human",
+      "patterns": {
+        "keywords": [
+          "human", "agent", "representative", "talk to someone", "escalate",
+          "customer service", "phone", "phone number", "email", "reach you"
+        ],
+        "regex": [
+          "speak.*(agent|human)",
+          "talk.*(agent|human)",
+          "need.*help.*human",
+          "escalate",
+          "customer.*service",
+          "how.*(contact|reach)",
+          "phone.*(number)?",
+          "email"
+        ]
+      },
+      "next_state": "escalationFlow"
+    },
+
+    "cancel_escalation": {
+      "description": "User wants to stop escalation",
+      "patterns": {
+        "keywords": [
+          "cancel escalation", "cancel request", "stop escalation",
+          "never mind", "cancel", "stop"
+        ],
+        "regex": [
+          "cancel.*(escalation|request)",
+          "stop.*(escalation|request)",
+          "never mind"
+        ]
+      },
+      "next_state": "cancelEscalationFlow"
+    },
+
+    "faq": {
+      "description": "User asks a factual question",
+      "patterns": {
+        "keywords": [
+          "hours", "open", "close", "location", "store location",
+          "refund", "return policy", "shipping", "delivery times"
+        ],
+        "regex": [
+          "what.*time.*open",
+          "when.*close",
+          "where.*(store|location)",
+          "how.*refund",
+          "what.*refund.*policy"
+        ]
+      },
+      "next_state": "faqFlow"
+    },
+
+    "faq_list": {
+      "description": "User wants the full FAQ list",
+      "patterns": {
+        "keywords": [
+          "faq", "faqs", "show faqs", "more faqs", "faq list",
+          "show questions", "more questions", "all faqs"
+        ],
+        "regex": [
+          "^faq$",
+          "^faqs$",
+          "show.*faq",
+          "more.*faq",
+          "faq.*list"
+        ]
+      },
+      "next_state": "faqListFlow"
+    },
+
+    "product_lookup": {
+      "description": "User wants a specific product",
+      "patterns": {
+        "keywords": ["product", "products", "item"],
+        "regex": [
+          "product\\s+\\d+",
+          "show\\s+product\\s+\\d+",
+          "item\\s+\\d+"
+        ]
+      },
+      "next_state": "productFlow"
+    },
+
+    "list_products": {
+      "description": "User wants the product catalog",
+      "patterns": {
+        "keywords": [
+          "products", "product list", "list products", "show products",
+          "all products", "what products", "sell", "catalog", "inventory"
+        ],
+        "regex": [
+          "list.*products",
+          "show.*products",
+          "all.*products",
+          "what.*products",
+          "what.*sell",
+          "products$"
+        ]
+      },
+      "next_state": "listProductsFlow"
+    },
+
+    "smalltalk": {
+      "description": "Greetings, thanks, casual chat",
+      "patterns": {
+        "keywords": [
+          "hi", "hello", "hey", "thanks", "thank you", "bye", "goodbye",
+          "morning", "afternoon", "evening", "lol", "haha"
+        ],
+        "regex": [
+          "^hi",
+          "^hello",
+          "^hey",
+          "thank(s| you)",
+          "bye",
+          "good\\s*(morning|afternoon|evening)",
+          "(lol|haha|hehe)"
+        ]
+      },
+      "next_state": "smalltalkFlow"
+    },
+
+    "help": {
+      "description": "User asks what the assistant can do",
+      "patterns": {
+        "keywords": [
+          "help", "info", "information", "assist", "what can you do", "more help"
+        ],
+        "regex": [
+          "help",
+          "info",
+          "information",
+          "what.*(can|do).*you"
+        ]
+      },
+      "next_state": "helpFlow"
+    },
+
+    "fallback": {
+      "description": "No intent matched",
+      "next_state": "fallbackFlow"
+    }
+  },
+
+  "states": {
+    "faqFlow": {
+      "onSuccess": "faqFlow",
+      "onNoMatch": "fallbackFlow"
+    },
+    "orderFlow": {},
+    "escalationFlow": {},
+    "cancelEscalationFlow": {},
+    "smalltalkFlow": {},
+    "helpFlow": {},
+    "faqListFlow": {},
+    "productFlow": {},
+    "listProductsFlow": {},
+    "supportRequestFlow": {},
+    "fallbackFlow": {}
+  }
+}
