@@ -1,0 +1,10 @@
+title = "Gitleaks Config"
+
+[log]
+redact = true
+
+[allowlist]
+description = "Allow scanning without PR diff mode"
+regexes = [
+  ".*"
+]

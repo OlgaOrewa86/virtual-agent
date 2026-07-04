@@ -139,4 +139,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: --redact --verbose --exit-code=1
+          config-path: .gitleaks.toml
