@@ -134,5 +134,9 @@ jobs:
       # -------------------------
       # SECURITY
       # -------------------------
+
       - name: Check for secrets
-        uses: zricethezav/gitleaks-action@v2
+        if: github.event_name == 'push'
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

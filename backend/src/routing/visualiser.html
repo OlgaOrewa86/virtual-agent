@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Virtual Assistant Routing Visualiser</title>
+  <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f5f5f5;
+    }
+    header {
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0 0 4px 0;
+      font-size: 20px;
+    }
+    .subtitle {
+      color: #666;
+      font-size: 13px;
+    }
+    #graph {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    #error {
+      color: #b00020;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+    pre {
+      background: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      overflow-x: auto;
+    }
+    #debug-panel {
+      margin-top: 24px;
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .debug-item {
+      border-bottom: 1px solid #eee;
+      padding: 8px 0;
+    }
+    .debug-title {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Routing Visualiser</h1>
+    <div class="subtitle">
+      Intents → Flows, generated from <code>routing.json</code>
+    </div>
+  </header>
+
+  <div id="graph" class="mermaid">
+    flowchart TD
+      loading[Loading routing graph...]
+  </div>
+
+  <div id="error"></div>
+
+  <h2 style="margin-top:24px;font-size:16px;">Raw routing JSON</h2>
+  <pre id="raw-json"></pre>
+
+  <h2 style="margin-top:24px;font-size:16px;">Debug Panel</h2>
+  <div id="debug-panel"></div>
+
+
+  <script type="module">
+    import { routingToMermaid } from "./routingToMermaid.js";
+    import { DebugPanel } from "./debugPanel.js";
+    
+    new DebugPanel("debug-panel");
+
+
+    mermaid.initialize({ startOnLoad: false });
+
+    async function loadRouting() {
+      try {
+        const res = await fetch("http://localhost:3001/routing");
+        if (!res.ok) {
+          throw new Error("Failed to load /routing: " + res.status);
+        }
+        const routing = await res.json();
+        renderRouting(routing);
+      } catch (err) {
+        document.getElementById("error").textContent =
+          "Error loading routing.json: " + err.message;
+      }
+    }
+
+    function renderRouting(routing) {
+      document.getElementById("raw-json").textContent =
+        JSON.stringify(routing, null, 2);
+
+      const graph = routingToMermaid(routing);
+      const graphEl = document.getElementById("graph");
+      graphEl.textContent = graph;
+
+      mermaid.init(undefined, graphEl);
+    }
+
+    loadRouting();
+  </script>
+
+</body>
+</html>
