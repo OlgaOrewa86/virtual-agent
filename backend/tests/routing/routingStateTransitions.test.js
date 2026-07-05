@@ -24,7 +24,12 @@ jest.mock("../../src/services/productService.js", () => ({
 }));
 
 import request from "supertest";
-import app from "../../src/app.js";
+
+let app;
+beforeAll(async () => {
+  // IMPORTANT: dynamic import so Jest mock is applied
+  app = (await import("../../src/app.js")).default;
+});
 
 
 
