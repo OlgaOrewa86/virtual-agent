@@ -146,7 +146,7 @@ describe("Routing: state transition behaviour (/agent endpoint)", () => {
   it("routes product_lookup intent → productFlow", async () => {
     const res = await request(app)
       .post("/agent")
-      .send({ message: "show product 42" });
+      .send({ message: "show product 1" });
 
     expect(res.status).toBe(200);
     expect(res.body.intent).toBe("product_lookup_success");
@@ -159,7 +159,7 @@ describe("Routing: state transition behaviour (/agent endpoint)", () => {
   it("routes list_products intent → listProductsFlow", async () => {
     const res = await request(app)
       .post("/agent")
-      .send({ message: "show me your products" });
+      .send({ message: "show products" });
 
     expect(res.status).toBe(200);
     expect(res.body.intent).toBe("list_products_success");
