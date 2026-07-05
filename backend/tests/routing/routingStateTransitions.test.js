@@ -10,8 +10,21 @@
  * - escalation cancellation
  */
 
+import { jest } from "@jest/globals";
 import request from "supertest";
 import app from "../../src/app.js";
+
+jest.mock("../../src/services/productService.js", () => ({
+  getAllProducts: jest.fn().mockResolvedValue([
+    { id: 1, title: "Test Product 1" },
+    { id: 2, title: "Test Product 2" }
+  ]),
+  getProductById: jest.fn().mockResolvedValue({
+    id: 1,
+    title: "Test Product 1"
+  })
+}));
+
 
 describe("Routing: state transition behaviour (/agent endpoint)", () => {
 
