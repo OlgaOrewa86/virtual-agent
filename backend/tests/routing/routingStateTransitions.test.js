@@ -11,8 +11,6 @@
  */
 
 import { jest } from "@jest/globals";
-import request from "supertest";
-import app from "../../src/app.js";
 
 jest.mock("../../src/services/productService.js", () => ({
   getAllProducts: jest.fn().mockResolvedValue([
@@ -24,6 +22,10 @@ jest.mock("../../src/services/productService.js", () => ({
     title: "Test Product 1"
   })
 }));
+
+import request from "supertest";
+import app from "../../src/app.js";
+
 
 
 describe("Routing: state transition behaviour (/agent endpoint)", () => {
