@@ -1,9 +1,5 @@
 export default {
 
-  // -----------------------------
-  // 1. HIGH‑PRIORITY ACTION INTENTS
-  // -----------------------------
-
   support_request: {
     keywords: [
       "submit ticket",
@@ -16,13 +12,13 @@ export default {
       "support ticket"
     ],
     regex: [
-      /create.*(ticket|support.*ticket)/i,
-      /open.*(ticket|support)/i,
-      /submit.*(ticket|request)/i,
-      /raise.*ticket/i,
-      /file.*(ticket|request)/i,
-      /report.*bug/i,
-      /support.*ticket/i
+      "create.*(ticket|support.*ticket)",
+      "open.*(ticket|support)",
+      "submit.*(ticket|request)",
+      "raise.*ticket",
+      "file.*(ticket|request)",
+      "report.*bug",
+      "support.*ticket"
     ]
   },
 
@@ -36,10 +32,10 @@ export default {
       "package"
     ],
     regex: [
-      /where.*order/i,
-      /track.*order/i,
-      /order.*status/i,
-      /package.*(arrive|coming|delivered)/i
+      "where.*order",
+      "track.*order",
+      "order.*status",
+      "package.*(arrive|coming|delivered)"
     ]
   },
 
@@ -57,14 +53,14 @@ export default {
       "reach you"
     ],
     regex: [
-      /speak.*(agent|human)/i,
-      /talk.*(agent|human)/i,
-      /need.*help.*human/i,
-      /escalate/i,
-      /customer.*service/i,
-      /how.*(contact|reach)/i,
-      /phone.*(number)?/i,
-      /email/i
+      "speak.*(agent|human)",
+      "talk.*(agent|human)",
+      "need.*help.*human",
+      "escalate",
+      "customer.*service",
+      "how.*(contact|reach)",
+      "phone.*(number)?",
+      "email"
     ]
   },
 
@@ -78,15 +74,11 @@ export default {
       "stop"
     ],
     regex: [
-      /cancel.*(escalation|request)/i,
-      /stop.*(escalation|request)/i,
-      /never mind/i
+      "cancel.*(escalation|request)",
+      "stop.*(escalation|request)",
+      "never mind"
     ]
   },
-
-  // -----------------------------
-  // 2. INFORMATIONAL INTENTS
-  // -----------------------------
 
   faq: {
     keywords: [
@@ -101,11 +93,11 @@ export default {
       "delivery times"
     ],
     regex: [
-      /what.*time.*open/i,
-      /when.*close/i,
-      /where.*(store|location)/i,
-      /how.*refund/i,
-      /what.*refund.*policy/i
+      "what.*time.*open",
+      "when.*close",
+      "where.*(store|location)",
+      "how.*refund",
+      "what.*refund.*policy"
     ]
   },
 
@@ -121,20 +113,20 @@ export default {
       "all faqs"
     ],
     regex: [
-      /^faq$/i,
-      /^faqs$/i,
-      /show.*faq/i,
-      /more.*faq/i,
-      /faq.*list/i
+      "^faq$",
+      "^faqs$",
+      "show.*faq",
+      "more.*faq",
+      "faq.*list"
     ]
   },
 
   product_lookup: {
     keywords: ["product", "products", "item"],
     regex: [
-      /product\s+\d+/i,
-      /show\s+product\s+\d+/i,
-      /item\s+\d+/i
+      "product\\s+\\d+",
+      "show\\s+product\\s+\\d+",
+      "item\\s+\\d+"
     ]
   },
 
@@ -151,18 +143,14 @@ export default {
       "inventory"
     ],
     regex: [
-      /list.*products/i,
-      /show.*products/i,
-      /all.*products/i,
-      /what.*products/i,
-      /what.*sell/i,
-      /products$/i
+      "list.*products",
+      "show.*products",
+      "all.*products",
+      "what.*products",
+      "what.*sell",
+      "products$"
     ]
   },
-
-  // -----------------------------
-  // 3. GENERIC INTENTS (LOW PRIORITY)
-  // -----------------------------
 
   smalltalk: {
     keywords: [
@@ -180,13 +168,13 @@ export default {
       "haha"
     ],
     regex: [
-      /^hi\b/i,
-      /^hello\b/i,
-      /^hey\b/i,
-      /thank(s| you)/i,
-      /bye/i,
-      /good\s*(morning|afternoon|evening)/i,
-      /(lol|haha|hehe)/i
+      "^hi\\b",
+      "^hello\\b",
+      "^hey\\b",
+      "thank(s| you)",
+      "bye",
+      "good\\s*(morning|afternoon|evening)",
+      "(lol|haha|hehe)"
     ]
   },
 
@@ -200,10 +188,10 @@ export default {
       "more help"
     ],
     regex: [
-      /help/i,
-      /info/i,
-      /information/i,
-      /what.*(can|do).*you/i
+      "help",
+      "info",
+      "information",
+      "what.*(can|do).*you"
     ]
   }
 

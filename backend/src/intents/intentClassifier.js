@@ -46,10 +46,12 @@ function scoreRules(text) {
     const { regex } = patterns[intent];
 
     for (const pattern of regex) {
-      if (pattern.test(text)) {
-        scores[intent] = intent === "support_request"
-          ? Math.max(scores[intent], 2)
-          : Math.max(scores[intent], 5);
+      const re = new RegExp(pattern, "i");
+        if (re.test(text)) {
+
+          scores[intent] = intent === "support_request"
+            ? Math.max(scores[intent], 2)
+            : Math.max(scores[intent], 5);
       }
     }
   }
