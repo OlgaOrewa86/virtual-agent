@@ -60,6 +60,8 @@ function scoreRules(text) {
   const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
   const [bestIntent, bestScore] = sorted[0];
 
+  
+
   return { intent: bestIntent, score: bestScore, override: false };
 }
 
