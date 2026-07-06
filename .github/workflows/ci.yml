@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -45,7 +47,6 @@ jobs:
 
       - name: Build backend
         run: cd backend && npm run build:backend
-
 
       # -------------------------
       # BACKEND HEALTH CHECK
@@ -101,10 +102,6 @@ jobs:
 
           echo "✅ Logging validation passed"
 
-
-
-
-
       # -------------------------
       # FRONTEND
       # -------------------------
@@ -117,7 +114,6 @@ jobs:
       - name: Build frontend
         run: cd frontend && npm run build
 
-      
       # -------------------------
       # SECURITY — Dependency Scan
       # -------------------------
@@ -129,7 +125,6 @@ jobs:
 
       - name: Run OSV dependency vulnerability scan
         run: ./osv-scanner --recursive . --severity=CRITICAL || true
-
 
       # -------------------------
       # SECURITY
