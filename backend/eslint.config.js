@@ -4,9 +4,12 @@ export default [
     languageOptions: {
       sourceType: "module",
       ecmaVersion: "latest",
-      env: {
-        node: true,
-        es2021: true,
+      globals: {
+        // node environment
+        process: "readonly",
+        __dirname: "readonly",
+        module: "readonly",
+        require: "readonly",
       },
     },
     rules: {
@@ -20,8 +23,14 @@ export default [
     languageOptions: {
       sourceType: "module",
       ecmaVersion: "latest",
-      env: {
-        jest: true,
+      globals: {
+        // jest environment
+        test: "readonly",
+        expect: "readonly",
+        describe: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        jest: "readonly",
       },
     },
     rules: {
