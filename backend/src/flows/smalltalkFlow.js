@@ -1,11 +1,29 @@
 // src/flows/smalltalkFlow.js
 import { buildResponse } from "../utils/responseBuilder.js";
 
+const GREETINGS = ["hi", "hello", "hey", "morning", "afternoon", "evening"];
+const THANKS = ["thanks", "thank you", "thx"];
+const GOODBYES = ["bye", "goodbye"];
+const LAUGHS = ["lol", "haha", "hehe"];
+
+// Normalize user text safely
+function normalize(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s]/g, "") // remove punctuation
+    .trim();
+}
+
+// Check if any phrase appears as a standalone word/phrase
+function containsPhrase(text, phrases) {
+  return phrases.some(p => text.includes(p));
+}
+
 export default async function smalltalkFlow(message) {
-  const text = message.toLowerCase();
+  const text = normalize(message);
 
   // Greeting
-  if (text.includes("hi") || text.includes("hello") || text.includes("hey")) {
+  if (containsPhrase(text, GREETINGS)) {
     return buildResponse({
       text: "Hi there! How can I help you today?",
       intent: "smalltalk",
@@ -14,7 +32,7 @@ export default async function smalltalkFlow(message) {
   }
 
   // Thanks
-  if (text.includes("thanks") || text.includes("thank you")) {
+  if (containsPhrase(text, THANKS)) {
     return buildResponse({
       text: "You're welcome! Happy to help.",
       intent: "smalltalk",
@@ -23,9 +41,18 @@ export default async function smalltalkFlow(message) {
   }
 
   // Goodbye
-  if (text.includes("bye")) {
+  if (containsPhrase(text, GOODBYES)) {
     return buildResponse({
       text: "Goodbye! Have a great day.",
+      intent: "smalltalk",
+      source: "rule"
+    });
+  }
+
+  // Laughs
+  if (containsPhrase(text, LAUGHS)) {
+    return buildResponse({
+      text: "😄",
       intent: "smalltalk",
       source: "rule"
     });

@@ -23,7 +23,8 @@ function getRelatedFAQs(match, faqData) {
 }
 
 
-const faqPath = path.resolve("knowledge/faq.json");
+const faqPath = path.join(process.cwd(), "knowledge", "faq.json");
+
 
 let faqData = [];
 

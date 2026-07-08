@@ -1,14 +1,22 @@
 export default [
-  // Node backend files
   {
     files: ["src/**/*.js"],
     languageOptions: {
       sourceType: "module",
       ecmaVersion: "latest",
       globals: {
-        process: "readonly",
+        // Node built‑ins
         console: "readonly",
+        process: "readonly",
+        __dirname: "readonly",
+        module: "readonly",
+        require: "readonly",
+
+        // Timers
         setTimeout: "readonly",
+        clearTimeout: "readonly",
+
+        // Node 18+ global fetch
         fetch: "readonly",
       },
     },
@@ -18,19 +26,19 @@ export default [
     },
   },
 
-  // Jest test files
   {
     files: ["tests/**/*.test.js"],
     languageOptions: {
       sourceType: "module",
       ecmaVersion: "latest",
       globals: {
-        describe: "readonly",
-        it: "readonly",
+        // Jest globals
         test: "readonly",
         expect: "readonly",
+        describe: "readonly",
         beforeEach: "readonly",
         afterEach: "readonly",
+        jest: "readonly",
       },
     },
     rules: {

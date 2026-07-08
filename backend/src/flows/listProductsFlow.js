@@ -1,13 +1,19 @@
 import { getAllProducts } from "../services/productService.js";
 import { buildResponse } from "../utils/responseBuilder.js";
 
+import { sanitizeProduct } from "../utils/sanitizeProduct.js";
+
 export default async function listProductsFlow() {
   const products = await getAllProducts();
 
-  const list = products.map(p => ({
-    title: `${p.id}. ${p.title}`,
-    value: `product ${p.id}`
-  }));
+  const list = products.map(raw => {
+    const p = sanitizeProduct(raw);
+
+    return {
+      title: `${p.id}. ${p.title}`,
+      value: `product ${p.id}`
+    };
+  });
 
   return buildResponse({
     text: null,

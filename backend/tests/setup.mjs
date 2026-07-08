@@ -1,4 +1,10 @@
+// backend/tests/setup.mjs
 import { jest } from '@jest/globals';
+
+// -------------------------------------------------------------
+// 0. TEST ENVIRONMENT FLAG
+// -------------------------------------------------------------
+process.env.NODE_ENV = 'test';
 
 // -------------------------------------------------------------
 // 1. MOCK OPENAI (LLM)
@@ -41,7 +47,24 @@ await jest.unstable_mockModule('../src/services/productService.js', () => ({
 }));
 
 // -------------------------------------------------------------
-// 4. CLEAR EVENT STORE BEFORE EACH TEST
+// 5. MOCK SECRETS MANAGER (critical for webhook + app startup)
+// -------------------------------------------------------------
+await jest.unstable_mockModule('../src/config/secrets.js', () => ({
+  loadSecrets: jest.fn().mockResolvedValue({
+    WEBHOOK_SECRET: 'test-secret',
+    OPENAI_API_KEY: 'test-key'
+  })
+}));
+
+// -------------------------------------------------------------
+// 6. MOCK DEBUG PANEL (prevents setInterval from running)
+// -------------------------------------------------------------
+await jest.unstable_mockModule('../src/routing/debugPanel.js', () => ({
+  startDebugPanel: jest.fn()
+}));
+
+// -------------------------------------------------------------
+// 7. CLEAR EVENT STORE BEFORE EACH TEST
 // -------------------------------------------------------------
 import { clearEvents } from '../src/store/eventStore.js';
 
@@ -50,7 +73,7 @@ beforeEach(() => {
 });
 
 // -------------------------------------------------------------
-// 5. CLEAR TIMERS (DebugPanel uses setInterval)
+// 8. CLEAR TIMERS (DebugPanel + flows use setInterval/setTimeout)
 // -------------------------------------------------------------
 afterEach(() => {
   jest.useFakeTimers();
@@ -58,7 +81,7 @@ afterEach(() => {
 });
 
 // -------------------------------------------------------------
-// 6. OPTIONAL: SILENCE WINSTON LOGGING DURING TESTS
+// 9. SILENCE WINSTON LOGGING DURING TESTS
 // -------------------------------------------------------------
 import logger from '../src/utils/logger.js';
 logger.transports.forEach((t) => (t.silent = true));

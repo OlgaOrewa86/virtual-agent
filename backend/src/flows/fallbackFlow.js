@@ -54,7 +54,8 @@ export default async function fallbackFlow(userMessage, confidence = 0, faqMatch
     });
 
   } catch (err) {
-    logger.error("LLM fallback error:", err);
+    logger.error("LLM fallback error", { error: err.message });
+
 
     return buildResponse({
       text: "Sorry, I’m having trouble understanding right now.",
