@@ -2,25 +2,37 @@
 import axios from "axios";
 import logger from "../utils/logger.js";
 
+const AGENTS = ["Sarah", "John", "Emily", "Michael", "Ava"];
+const WEBHOOK_URL = "http://localhost:3001/webhook/support-update";
+
+// Validate ticket ID (TCK-1000–9999)
+function validateTicketId(id) {
+  return /^TCK-\d{4}$/.test(id);
+}
+
 export default function startMockTicketService(ticketId) {
+  if (!validateTicketId(ticketId)) {
+    logger.warn(`Mock ticket service received invalid ticketId: ${ticketId}`);
+    return;
+  }
+
   logger.info(`Mock ticket service started for ${ticketId}`);
 
-  // Simulate async external system (Zendesk, Salesforce, etc.)
+  const timeoutMs = 5000;
+
   setTimeout(async () => {
     try {
-      const agents = ["Sarah", "John", "Emily", "Michael", "Ava"];
-      const agent = agents[Math.floor(Math.random() * agents.length)];
+      const agent = AGENTS[Math.floor(Math.random() * AGENTS.length)];
 
-      await axios.post("http://localhost:3001/webhook/support-update", {
+      await axios.post(WEBHOOK_URL, {
         event: "ticket.assigned",
         ticketId,
         agent
       });
 
-
-      logger.info(`Mock webhook sent for ticket ${ticketId}`);
+      logger.info(`Mock webhook sent for ticket ${ticketId} (assigned to ${agent})`);
     } catch (err) {
-      logger.error("Mock service failed:", err.message);
+      logger.error(`Mock service failed for ${ticketId}: ${err.message}`);
     }
-  }, 5000);
+  }, timeoutMs);
 }
