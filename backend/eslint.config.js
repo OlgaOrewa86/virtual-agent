@@ -5,11 +5,19 @@ export default [
       sourceType: "module",
       ecmaVersion: "latest",
       globals: {
-        // node environment
+        // Node built‑ins
+        console: "readonly",
         process: "readonly",
         __dirname: "readonly",
         module: "readonly",
         require: "readonly",
+
+        // Timers
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+
+        // Node 18+ global fetch
+        fetch: "readonly",
       },
     },
     rules: {
@@ -24,7 +32,7 @@ export default [
       sourceType: "module",
       ecmaVersion: "latest",
       globals: {
-        // jest environment
+        // Jest globals
         test: "readonly",
         expect: "readonly",
         describe: "readonly",
