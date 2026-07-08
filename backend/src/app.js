@@ -75,19 +75,21 @@ const ordersLimiter = rateLimit({
 
 
 // --- Secrets loading (AWS Secrets Manager) ---
+const isCI = process.env.CI === "true";
 const isTest = process.env.NODE_ENV === "test";
 
 let webhookSecret;
 let secretsReady;
 
-if (isTest) {
+if (isTest || isCI) {
   webhookSecret = "test-secret";
-  secretsReady = Promise.resolve();   // prevents hanging
+  secretsReady = Promise.resolve();
 } else {
   secretsReady = loadSecrets().then((secrets) => {
     webhookSecret = secrets.WEBHOOK_SECRET;
   });
 }
+
 
 // --- Middleware ---
 app.disable("x-powered-by");
