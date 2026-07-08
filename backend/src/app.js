@@ -73,11 +73,21 @@ const ordersLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+
 // --- Secrets loading (AWS Secrets Manager) ---
+const isTest = process.env.NODE_ENV === "test";
+
 let webhookSecret;
-const secretsReady = loadSecrets().then((secrets) => {
-  webhookSecret = secrets.WEBHOOK_SECRET;
-});
+let secretsReady;
+
+if (isTest) {
+  webhookSecret = "test-secret";
+  secretsReady = Promise.resolve();   // prevents hanging
+} else {
+  secretsReady = loadSecrets().then((secrets) => {
+    webhookSecret = secrets.WEBHOOK_SECRET;
+  });
+}
 
 // --- Middleware ---
 app.disable("x-powered-by");
@@ -136,7 +146,7 @@ app.use((req, res, next) => {
 app.use(requestLogger);
 
 // --- Dev-only routing UI (not exposed in production) ---
-if (process.env.NODE_ENV !== "production") {
+if (!isTest && process.env.NODE_ENV !== "production") {
   app.use("/routing-ui", express.static("./src/routing"));
 }
 
@@ -323,6 +333,12 @@ app.post("/agent", async (req, res) => {
   }
 });
 
+// --- 404 handler ---
+app.use((req, res) => {
+  res.status(404).json({ error: "Not found" });
+});
+
+// --- Error handler ---
 app.use((err, req, res, next) => {
   logger.error("Unhandled error", {
     error: err.message,

@@ -1,9 +1,9 @@
-
+import crypto from 'crypto';
 import request from 'supertest';
 import app from '../../src/app.js';
 
-
 describe('API Integration Suite', () => {
+
   it('GET /health returns 200', async () => {
     const res = await request(app).get('/health');
     expect(res.status).toBe(200);
@@ -31,7 +31,22 @@ describe('API Integration Suite', () => {
       agent: 'Alice'
     };
 
-    const res = await request(app).post('/webhook/support-update').send(webhookPayload);
+    // --- Build required security headers ---
+    const rawBody = JSON.stringify(webhookPayload);
+    const secret = 'test-secret';        // must match mocked WEBHOOK_SECRET
+    const timestamp = Date.now().toString();
+
+    const signature = crypto
+      .createHmac('sha256', secret)
+      .update(rawBody)
+      .digest('hex');
+
+    const res = await request(app)
+      .post('/webhook/support-update')
+      .set('x-webhook-secret', secret)
+      .set('x-signature', signature)
+      .set('x-timestamp', timestamp)
+      .send(webhookPayload);
 
     expect(res.status).toBe(200);
     expect(res.body.status).toBe('ok');
