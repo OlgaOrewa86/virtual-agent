@@ -340,6 +340,8 @@ app.use((req, res) => {
   res.status(404).json({ error: "Not found" });
 });
 
+
+
 // --- Error handler ---
 app.use((err, req, res, next) => {
   logger.error("Unhandled error", {
