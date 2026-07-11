@@ -8,6 +8,9 @@ import TypingIndicator from "./components/TypingIndicator";
 import List from "./components/List";
 import ProductCard from "./components/ProductCard";
 
+import { sendAgentMessage, pollEvents } from "./apiClient";
+
+
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -45,10 +48,29 @@ function App() {
   async function sendMessage(forcedValue, options = {}) {
     const { silent = false } = options;
 
-    const textToSend = forcedValue || input;
-    if (!textToSend.trim()) return;
+    const rawText = forcedValue || input;
 
-    // ⭐ Only add user bubble if NOT silent
+    // --- Input Handling ---
+    const textToSend = rawText.trim();        // Trim whitespace
+
+    if (!textToSend) return;                  // Reject empty
+
+    const MAX_LEN = 300;
+    if (textToSend.length > MAX_LEN) {
+      setMessages(prev => [
+        ...prev,
+        {
+          sender: "agent",
+          text: `Your message is too long. Please keep it under ${MAX_LEN} characters.`,
+          time: new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        },
+      ]);
+      return;
+    }
+    //  Only add user bubble if NOT silent
     if (!silent) {
       const userMessage = {
         sender: "user",
@@ -66,51 +88,47 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3001/agent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: textToSend }),
-      });
+      const data = await sendAgentMessage(textToSend);
 
-      const data = await res.json();
-
-      //  Start conditional polling if backend requests it
       if (data.startPolling) {
         setShouldPoll(true);
-}
+      }
 
       const agentMessage = {
         sender: "agent",
         text: data.text,
-        ticketId: data.ticketId || null,
+        ticketId: data.ticketId,
         agent: data.agent,
-        card: data.card || null,
-        buttons: data.buttons || null,
-        list: data.list || null,
-        image: data.image || null,
-        product: data.product || null,
+        card: data.card,
+        buttons: data.buttons,
+        list: data.list,
+        image: data.image,
+        product: data.product,
         time: new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
         }),
       };
 
-      setMessages((prev) => [...prev, agentMessage]);
+      setMessages(prev => [...prev, agentMessage]);
     } catch (err) {
-      setMessages((prev) => [
+      console.error("sendMessage failed:", err);
+
+      setMessages(prev => [
         ...prev,
         {
           sender: "agent",
-          text: "Error contacting server.",
+          text: "Something went wrong — please try again.",
           time: new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           }),
         },
       ]);
+    } finally {
+      setLoading(false);
     }
 
-    setLoading(false);
   }
 
 
@@ -131,18 +149,21 @@ function App() {
  useEffect(() => {
   if (!shouldPoll) return;
 
+  const MAX_ATTEMPTS = 20;      // 20 seconds total
+  let attempts = 0;
+
   async function poll() {
     try {
-      const res = await fetch("http://localhost:3001/events");
-      const data = await res.json();
 
-      // If events exist, append them and THEN stop polling
-      if (data.events && data.events.length > 0) {
-        data.events.forEach((evt) => {
-          setMessages((prev) => [
+      attempts++;
+      const events = await pollEvents();
+
+      if (events.length > 0) {
+        events.forEach(evt => {
+          setMessages(prev => [
             ...prev,
             {
-              sender: evt.sender || "agent",
+              sender: evt.sender,
               text: evt.text,
               time: new Date().toLocaleTimeString([], {
                 hour: "2-digit",
@@ -152,16 +173,51 @@ function App() {
           ]);
         });
 
-        // NOW stop polling
+        // Stop polling
         setShouldPoll(false);
         clearInterval(pollingRef.current);
         pollingRef.current = null;
         return;
       }
 
+       // Stop if max attempts reached
+      if (attempts >= MAX_ATTEMPTS) {
+        setMessages(prev => [
+          ...prev,
+          {
+            sender: "agent",
+            text: "Still working on your request — this may take a bit longer.",
+            time: new Date().toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+          },
+        ]);
+
+        setShouldPoll(false);
+        clearInterval(pollingRef.current);
+        pollingRef.current = null;
+      }
+
       // Otherwise keep polling until event arrives
     } catch (err) {
       console.error("Event polling failed:", err);
+      
+      setMessages(prev => [
+        ...prev,
+        {
+          sender: "agent",
+          text: "Something went wrong — please try again.",
+          time: new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        },
+      ]);
+      
+      setShouldPoll(false);
+      clearInterval(pollingRef.current);
+      pollingRef.current = null;
     }
   }
 
