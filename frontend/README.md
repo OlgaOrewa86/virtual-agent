@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# Virtual Agent — Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This folder contains the React frontend for the Virtual Agent project. It provides a conversational chat interface for users to interact with the virtual agent for orders, FAQs, returns, and support.
 
-## Available Scripts
+## Quick Start
 
-In the project directory, you can run:
+Requirements:
 
-### `npm start`
+- Node.js 18+ (or compatible LTS)
+- npm or yarn
+- Backend running on `http://localhost:3000` (configurable in `apiClient.js`)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Install dependencies:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+cd frontend
+npm install
+# or: yarn install
+```
 
-### `npm test`
+Start the development server:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+cd frontend
+npm start
+```
 
-### `npm run build`
+The app will open at [http://localhost:3000](http://localhost:3000) in your browser and reload on changes.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Run tests:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+cd frontend
+npm test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Build for production:
 
-### `npm run eject`
+```bash
+cd frontend
+npm run build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `src/` — application source
+  - `components/` — reusable React components (Message, Card, List, ProductCard, etc.)
+  - `pages/` — page-level components (OrderTracking)
+  - `apiClient.js` — HTTP client for backend communication
+  - `App.js` — main application component
+- `public/` — static assets
+- `build/` — production build output (generated)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Configuration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The frontend connects to the backend API via `apiClient.js`. Update the API endpoint if running on a different host/port:
 
-## Learn More
+```javascript
+// apiClient.js
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:3000";
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can set `REACT_APP_API_URL` in a `.env` file or as an environment variable.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Common Commands
 
-### Code Splitting
+- Start dev server: `npm start`
+- Run tests: `npm test`
+- Build: `npm run build`
+- Eject (one-way): `npm run eject`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contributing
 
-### Analyzing the Bundle Size
+When contributing, run tests locally and ensure the app works with the backend. Use clear commit messages and open a PR for review.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Troubleshooting
 
-### Making a Progressive Web App
+- **Backend not responding**: Ensure the backend is running on the configured API endpoint.
+- **Port 3000 already in use**: Set `PORT` environment variable: `PORT=3001 npm start`
+- **Build errors**: Clear `node_modules/` and reinstall: `rm -rf node_modules && npm install`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Contacts
 
-### Advanced Configuration
+For questions about the frontend, see the maintainer listed in the repository or open an issue in the project tracker.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+README last updated: 2026-07-13
