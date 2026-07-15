@@ -1,26 +1,46 @@
 export default {
 
-  support_request: {
-    keywords: [
-      "submit ticket",
-      "create ticket",
-      "open ticket",
-      "raise ticket",
-      "file ticket",
-      "support request",
-      "bug report",
-      "support ticket"
-    ],
-    regex: [
-      "create.*(ticket|support.*ticket)",
-      "open.*(ticket|support)",
-      "submit.*(ticket|request)",
-      "raise.*ticket",
-      "file.*(ticket|request)",
-      "report.*bug",
-      "support.*ticket"
-    ]
-  },
+support_request: {
+  keywords: [
+    "submit ticket",
+    "create ticket",
+    "open ticket",
+    "raise ticket",
+    "file ticket",
+    "support request",
+    "bug report",
+    "support ticket",
+    "broken item",
+    "damaged item",
+    "faulty item",
+    "issue",
+    "problem",
+    "report issue",
+    "report a problem",
+    "need support",
+    "need help",
+    "need assistance",
+    "item not working",
+    "item is broken"
+  ],
+  regex: [
+    "create.*(ticket|support.*ticket)",
+    "open.*(ticket|support)",
+    "submit.*(ticket|request)",
+    "raise.*ticket",
+    "file.*(ticket|request)",
+    "report.*bug",
+    "support.*ticket",
+    "broken.*item",
+    "damaged\\s*item",
+    "faulty\\s*item",
+    "(report|submit).*issue",
+    "(report|submit).*problem",
+    "need.*(support|help|assistance)",
+    "item.*(broken|damaged|faulty)"
+  ]
+},
+
 
   order_status: {
     keywords: [
@@ -122,13 +142,14 @@ export default {
   },
 
   product_lookup: {
-    keywords: ["product", "products", "item"],
+    keywords: ["product", "products"],
     regex: [
       "product\\s+\\d+",
       "show\\s+product\\s+\\d+",
       "item\\s+\\d+"
     ]
   },
+
 
   list_products: {
     keywords: [

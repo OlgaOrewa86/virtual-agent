@@ -4,6 +4,24 @@ import logger from "../utils/logger.js";
 
 export function verifyWebhook(secret) {
   return (req, res, next) => {
+
+    // Allow mock service in development mode
+    if (process.env.NODE_ENV === "development") {
+      // Still validate payload shape for security
+      const parsed = webhookSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ error: parsed.error.issues[0].message });
+      }
+
+      req.webhookData = parsed.data;
+      logger.info(
+        `Webhook (dev mode): ${parsed.data.event} for ${parsed.data.ticketId} (agent: ${parsed.data.agent})`
+      );
+      return next();
+    }
+
+    // ⭐ Production mode: full security checks
+
     // 1. Secret header check
     const providedSecret = req.get("x-webhook-secret");
     if (secret && providedSecret !== secret) {
@@ -44,7 +62,6 @@ export function verifyWebhook(secret) {
       return res.status(400).json({ error: parsed.error.issues[0].message });
     }
 
-    // Attach parsed data for the controller
     req.webhookData = parsed.data;
 
     logger.info(

@@ -1,11 +1,8 @@
-import { SecretsManager } from "@aws-sdk/client-secrets-manager";
-
-const sm = new SecretsManager();
 
 export async function loadSecrets() {
-  const secret = await sm.getSecretValue({
-    SecretId: "virtual-agent-secrets"
-  });
-
-  return JSON.parse(secret.SecretString);
+  return {
+    WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    SHIP24_API_KEY: process.env.SHIP24_API_KEY
+  };
 }

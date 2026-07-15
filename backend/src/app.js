@@ -36,6 +36,7 @@ app.use("/api/orders", ordersLimiter);
 
 // --- Secrets loading ---
 const { webhookSecret, secretsReady } = await initWebhookSecret(ENV);
+await secretsReady; // wait for secret to load
 
 // --- Webhook router ---
 app.use("/webhook", createWebhookRouter(webhookSecret, secretsReady));

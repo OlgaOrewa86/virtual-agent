@@ -10,6 +10,7 @@ function validateTicketId(id) {
   return /^TCK-\d{4}$/.test(id);
 }
 
+
 export default function startMockTicketService(ticketId) {
   if (!validateTicketId(ticketId)) {
     logger.warn(`Mock ticket service received invalid ticketId: ${ticketId}`);
@@ -28,7 +29,12 @@ export default function startMockTicketService(ticketId) {
         event: "ticket.assigned",
         ticketId,
         agent
+      }, {
+        headers: {
+          "x-webhook-secret": process.env.WEBHOOK_SECRET
+        }
       });
+
 
       logger.info(`Mock webhook sent for ticket ${ticketId} (assigned to ${agent})`);
     } catch (err) {

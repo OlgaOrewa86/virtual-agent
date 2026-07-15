@@ -7,5 +7,6 @@ export const ENV = {
   isTest: process.env.NODE_ENV === "test",
   isCI: process.env.CI === "true",
 
-  corsOrigin: process.env.CORS_ALLOWED_ORIGIN || "http://localhost:3000"
+  corsOrigin: process.env.CORS_ALLOWED_ORIGIN || "http://localhost:3000",
+
 };
